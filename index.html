@@ -19,13 +19,14 @@
   .section{display:none}.section.active{display:block}
   .kpis{display:grid;grid-template-columns:repeat(5,1fr);gap:16px;margin-bottom:24px}
   .kpi{background:#fff;border-radius:12px;padding:18px 20px;box-shadow:0 2px 8px rgba(0,0,0,.06);border-left:4px solid #ddd}
-  .kpi.green{border-color:#22c55e}.kpi.blue{border-color:#3b82f6}.kpi.orange{border-color:#f59e0b}.kpi.red{border-color:#ef4444}.kpi.gray{border-color:#94a3b8}.kpi.teal{border-color:#0d9488}
+  .kpi.green{border-color:#22c55e}.kpi.blue{border-color:#3b82f6}.kpi.orange{border-color:#f59e0b}.kpi.red{border-color:#ef4444}.kpi.gray{border-color:#94a3b8}.kpi.teal{border-color:#0d9488}.kpi.purple{border-color:#8b5cf6}
   .kpi-val{font-size:2rem;font-weight:800;line-height:1}
   .kpi-pct{font-size:.85rem;color:#888;margin-top:2px}
   .kpi-label{font-size:.8rem;text-transform:uppercase;letter-spacing:.5px;color:#666;margin-top:8px}
   .charts-row{display:grid;grid-template-columns:1fr 1.8fr 1fr;gap:16px;margin-bottom:24px}
   .charts-row-2{display:grid;grid-template-columns:1.5fr 1fr;gap:16px;margin-bottom:24px}
   .charts-row-equal{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:24px}
+  .charts-row-3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;margin-bottom:24px}
   .card{background:#fff;border-radius:12px;padding:20px;box-shadow:0 2px 8px rgba(0,0,0,.06);margin-bottom:0}
   .card h2{font-size:.85rem;text-transform:uppercase;letter-spacing:.5px;color:#666;margin-bottom:16px;font-weight:600}
   .chart-wrap{position:relative;height:220px;display:flex;align-items:center;justify-content:center}
@@ -34,10 +35,9 @@
   .fat-table{width:100%;border-collapse:collapse;font-size:.88rem}
   .fat-table th{background:#f8fafc;text-align:left;padding:10px 14px;font-weight:600;color:#475569;font-size:.78rem;text-transform:uppercase;letter-spacing:.4px;border-bottom:2px solid #e2e8f0}
   .fat-table td{padding:10px 14px;border-bottom:1px solid #f1f5f9}
-  .fat-table tr:last-child td{font-weight:700;background:#eff6ff;color:#1d4ed8}
   .fat-highlight{font-size:.75rem;color:#22c55e;font-weight:600}
   .fat-low{font-size:.75rem;color:#ef4444;font-weight:600}
-  .rh-kpis{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:24px}
+  .rh-kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:24px}
   .rh-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:24px}
   .rh-kpi{background:#fff;border-radius:12px;padding:16px 18px;box-shadow:0 2px 8px rgba(0,0,0,.06);border-top:4px solid}
   .rh-kpi.green{border-color:#22c55e}.rh-kpi.blue{border-color:#3b82f6}.rh-kpi.orange{border-color:#f59e0b}.rh-kpi.red{border-color:#ef4444}.rh-kpi.teal{border-color:#0d9488}.rh-kpi.purple{border-color:#8b5cf6}
@@ -72,7 +72,18 @@
   .obs-cell{font-size:.75rem;color:#94a3b8;max-width:200px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
   .count-info{font-size:.8rem;color:#94a3b8;margin-left:auto}
   .periodo-badge{display:inline-block;background:#f1f5f9;border-radius:8px;padding:4px 12px;font-size:.75rem;color:#475569;font-weight:600;margin-bottom:16px}
-  @media(max-width:900px){.kpis,.rh-kpis{grid-template-columns:repeat(2,1fr)}.charts-row,.charts-row-2,.charts-row-equal,.rh-grid,.eq-grid{grid-template-columns:1fr}}
+  .month-tabs{display:flex;gap:8px;margin-bottom:20px}
+  .month-tab{padding:7px 18px;border-radius:20px;cursor:pointer;font-size:.82rem;font-weight:600;background:#f1f5f9;color:#64748b;border:2px solid transparent;transition:all .15s}
+  .month-tab.active{background:#0f3460;color:#fff;border-color:#0f3460}
+  .sst-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:24px}
+  .sst-card{background:#fff;border-radius:12px;padding:20px;box-shadow:0 2px 8px rgba(0,0,0,.06);border-top:4px solid}
+  .sst-card.red{border-color:#ef4444}.sst-card.green{border-color:#22c55e}.sst-card.orange{border-color:#f59e0b}.sst-card.blue{border-color:#3b82f6}
+  .sst-val{font-size:2rem;font-weight:800;line-height:1}
+  .sst-label{font-size:.78rem;text-transform:uppercase;letter-spacing:.4px;color:#64748b;margin-top:8px}
+  .sst-sub{font-size:.82rem;color:#888;margin-top:4px}
+  .tf-badge{display:inline-block;padding:5px 14px;border-radius:20px;font-size:.8rem;font-weight:700}
+  .section-title{font-size:.9rem;font-weight:700;color:#0f3460;text-transform:uppercase;letter-spacing:.8px;margin-bottom:10px;margin-top:4px}
+  @media(max-width:900px){.kpis,.rh-kpis,.sst-grid{grid-template-columns:repeat(2,1fr)}.charts-row,.charts-row-2,.charts-row-equal,.charts-row-3,.rh-grid,.eq-grid{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
@@ -87,8 +98,10 @@
   <div class="tabs">
     <div class="tab active" onclick="showTab('montagem',this)">Montagem</div>
     <div class="tab" onclick="showTab('producao',this)">Produção</div>
+    <div class="tab" onclick="showTab('vendas',this)">Vendas</div>
     <div class="tab" onclick="showTab('faturamento',this)">Faturamento</div>
     <div class="tab" onclick="showTab('rh',this)">RH</div>
+    <div class="tab" onclick="showTab('seguranca',this)">Segurança</div>
     <div class="tab" onclick="showTab('equipamentos',this)">Equipamentos</div>
   </div>
 
@@ -119,48 +132,169 @@
 
   <!-- ═══ PRODUÇÃO ═══ -->
   <div id="producao" class="section">
-    <div class="periodo-badge">Julho / 2026</div>
-    <div class="kpis" style="grid-template-columns:repeat(5,1fr)" id="prodKpis"></div>
-    <div class="charts-row-equal" style="margin-bottom:24px">
-      <div class="card">
-        <h2>Planejamento vs Realizado</h2>
-        <div class="chart-wrap-md"><canvas id="chartPlan"></canvas></div>
-      </div>
-      <div class="card">
-        <h2>% de Execução por Produto</h2>
-        <div class="chart-wrap-md"><canvas id="chartExec"></canvas></div>
-      </div>
+    <div class="month-tabs">
+      <div class="month-tab active" onclick="showProd('mai',this)">Maio/26</div>
+      <div class="month-tab" onclick="showProd('jun',this)">Junho/26</div>
+      <div class="month-tab" onclick="showProd('jul',this)">Julho/26</div>
     </div>
-    <div class="charts-row-2">
-      <div class="card">
-        <h2>Detalhamento – Planejado vs Executado</h2>
-        <table class="eq-table" style="margin-top:4px">
-          <thead><tr><th>Produto</th><th style="text-align:center">Planejado</th><th style="text-align:center">Executado</th><th style="text-align:center">% Execução</th><th>Situação</th></tr></thead>
-          <tbody id="planTable"></tbody>
-        </table>
-        <div style="margin-top:16px;font-size:.78rem;color:#64748b;line-height:1.8">
-          <strong>Critérios:</strong><br>
-          <span style="color:#dc2626">■</span> 0–49%: Entender os fatos com urgência &nbsp;
-          <span style="color:#854d0e">■</span> 50–89%: Verificar pontos de melhoria &nbsp;
-          <span style="color:#16a34a">■</span> 90–100%: Manter o bom trabalho
+
+    <!-- MAI -->
+    <div id="prod-mai" class="prod-section">
+      <div class="kpis" style="grid-template-columns:repeat(5,1fr)" id="prodKpisMai"></div>
+      <div class="charts-row-equal">
+        <div class="card"><h2>Planejado vs Realizado — Maio</h2><div class="chart-wrap-md"><canvas id="chartPlanMai"></canvas></div></div>
+        <div class="card"><h2>% Execução por Produto — Maio</h2><div class="chart-wrap-md"><canvas id="chartExecMai"></canvas></div></div>
+      </div>
+      <div class="charts-row-2" style="margin-top:16px">
+        <div class="card">
+          <h2>Detalhamento — Maio/26</h2>
+          <table class="eq-table">
+            <thead><tr><th>Produto</th><th style="text-align:center">Plan.</th><th style="text-align:center">Exec.</th><th style="text-align:center">%</th><th>Situação</th></tr></thead>
+            <tbody id="planTableMai"></tbody>
+          </table>
+          <div style="margin-top:12px;font-size:.75rem;color:#64748b;line-height:1.8">
+            <span style="color:#dc2626">■</span> 0–49%: Urgente &nbsp;
+            <span style="color:#854d0e">■</span> 50–89%: Atenção &nbsp;
+            <span style="color:#16a34a">■</span> 90–100%: Bom trabalho
+          </div>
+        </div>
+        <div class="card">
+          <h2>Produção de Cabinas — Maio (h)</h2>
+          <table class="eq-table">
+            <thead><tr><th>Obra</th><th style="text-align:center">Teto</th><th style="text-align:center">Assoalho</th><th style="text-align:center">Cabina</th><th style="text-align:center">Total</th></tr></thead>
+            <tbody>
+              <tr><td>Res. "Magnum"</td><td style="text-align:center">7,5</td><td style="text-align:center">7,5</td><td style="text-align:center">12,0</td><td style="text-align:center"><strong>27,0</strong></td></tr>
+              <tr><td>Res. "Francisco Camargo"</td><td style="text-align:center">8,0</td><td style="text-align:center">7,0</td><td style="text-align:center">11,5</td><td style="text-align:center"><strong>26,5</strong></td></tr>
+              <tr><td>Res. "Pettra Boqueirão"</td><td style="text-align:center">8,5</td><td style="text-align:center">10,0</td><td style="text-align:center">12,5</td><td style="text-align:center"><strong>31,0</strong></td></tr>
+              <tr><td>CT "Aabud"</td><td style="text-align:center">8,0</td><td style="text-align:center">8,5</td><td style="text-align:center">11,5</td><td style="text-align:center"><strong>28,0</strong></td></tr>
+              <tr><td>Yaskawa/Motoman 01</td><td style="text-align:center">8,0</td><td style="text-align:center">7,0</td><td style="text-align:center">13,0</td><td style="text-align:center"><strong>28,0</strong></td></tr>
+              <tr><td>Res. "Jardim do Forte"</td><td style="text-align:center">7,0</td><td style="text-align:center">7,5</td><td style="text-align:center">12,0</td><td style="text-align:center"><strong>26,5</strong></td></tr>
+            </tbody>
+          </table>
+          <div style="margin-top:10px;font-size:.8rem;color:#64748b"><strong>Tempo médio:</strong> 27h50min</div>
         </div>
       </div>
-      <div class="card">
-        <h2>Produção de Cabinas – Tempo por Etapa (h)</h2>
-        <div class="chart-wrap-tall"><canvas id="chartCabinas"></canvas></div>
+    </div>
+
+    <!-- JUN -->
+    <div id="prod-jun" class="prod-section" style="display:none">
+      <div class="kpis" style="grid-template-columns:repeat(5,1fr)" id="prodKpisJun"></div>
+      <div class="charts-row-equal">
+        <div class="card"><h2>Planejado vs Realizado — Junho</h2><div class="chart-wrap-md"><canvas id="chartPlanJun"></canvas></div></div>
+        <div class="card"><h2>% Execução por Produto — Junho</h2><div class="chart-wrap-md"><canvas id="chartExecJun"></canvas></div></div>
+      </div>
+      <div class="charts-row-2" style="margin-top:16px">
+        <div class="card">
+          <h2>Detalhamento — Junho/26</h2>
+          <table class="eq-table">
+            <thead><tr><th>Produto</th><th style="text-align:center">Plan.</th><th style="text-align:center">Exec.</th><th style="text-align:center">%</th><th>Situação</th></tr></thead>
+            <tbody id="planTableJun"></tbody>
+          </table>
+        </div>
+        <div class="card">
+          <h2>Produção de Cabinas — Junho (h)</h2>
+          <table class="eq-table">
+            <thead><tr><th>Obra</th><th style="text-align:center">Teto</th><th style="text-align:center">Assoalho</th><th style="text-align:center">Cabina</th><th style="text-align:center">Total</th></tr></thead>
+            <tbody>
+              <tr><td>Res. "Platinum" – BL "B"</td><td style="text-align:center">8,5</td><td style="text-align:center">7,0</td><td style="text-align:center">17,5</td><td style="text-align:center"><strong>33,0</strong></td></tr>
+              <tr><td>Res. "Francisco Camargo" (SV 02)</td><td style="text-align:center">8,0</td><td style="text-align:center">7,5</td><td style="text-align:center">18,0</td><td style="text-align:center"><strong>33,5</strong></td></tr>
+              <tr><td>Res. "Francisco Camargo" (SC 01)</td><td style="text-align:center">8,0</td><td style="text-align:center">8,0</td><td style="text-align:center">18,5</td><td style="text-align:center"><strong>34,5</strong></td></tr>
+              <tr><td>Res. "Torres" – BL "A" (Social)</td><td style="text-align:center">5,0</td><td style="text-align:center">8,5</td><td style="text-align:center">20,0</td><td style="text-align:center"><strong>33,5</strong></td></tr>
+            </tbody>
+          </table>
+          <div style="margin-top:10px;font-size:.8rem;color:#64748b"><strong>Tempo médio:</strong> 33h35min</div>
+        </div>
       </div>
     </div>
-    <div class="card" style="margin-top:16px">
-      <h2>Produção de Cabinas – Detalhamento por Obra</h2>
-      <table class="eq-table">
-        <thead><tr><th>Obra</th><th style="text-align:center">Teto (h)</th><th style="text-align:center">Assoalho (h)</th><th style="text-align:center">Cabina (h)</th><th style="text-align:center">Total (h)</th></tr></thead>
-        <tbody>
-          <tr><td>Res. "Bella Collina" – Serviço</td><td style="text-align:center">8,0</td><td style="text-align:center">11,5</td><td style="text-align:center">12,5</td><td style="text-align:center"><strong>32,0</strong></td></tr>
-          <tr><td>Res. "Bella Collina" – Social</td><td style="text-align:center">7,25</td><td style="text-align:center">8,25</td><td style="text-align:center">13,25</td><td style="text-align:center"><strong>28,75</strong></td></tr>
-          <tr><td>Res. "Jardim do Forte" – Social</td><td style="text-align:center">10,5</td><td style="text-align:center">8,5</td><td style="text-align:center">13,0</td><td style="text-align:center"><strong>32,0</strong></td></tr>
-          <tr><td>Fábrica "Yaskawa/Motoman" 02</td><td style="text-align:center">10,0</td><td style="text-align:center">9,0</td><td style="text-align:center">13,5</td><td style="text-align:center"><strong>32,5</strong></td></tr>
-        </tbody>
-      </table>
+
+    <!-- JUL -->
+    <div id="prod-jul" class="prod-section" style="display:none">
+      <div class="kpis" style="grid-template-columns:repeat(5,1fr)" id="prodKpisJul"></div>
+      <div class="charts-row-equal">
+        <div class="card"><h2>Planejado vs Realizado — Julho</h2><div class="chart-wrap-md"><canvas id="chartPlanJul"></canvas></div></div>
+        <div class="card"><h2>% Execução por Produto — Julho</h2><div class="chart-wrap-md"><canvas id="chartExecJul"></canvas></div></div>
+      </div>
+      <div class="charts-row-2" style="margin-top:16px">
+        <div class="card">
+          <h2>Detalhamento — Julho/26</h2>
+          <table class="eq-table">
+            <thead><tr><th>Produto</th><th style="text-align:center">Plan.</th><th style="text-align:center">Exec.</th><th style="text-align:center">%</th><th>Situação</th></tr></thead>
+            <tbody id="planTableJul"></tbody>
+          </table>
+          <div style="margin-top:12px;font-size:.75rem;color:#64748b;line-height:1.8">
+            <span style="color:#dc2626">■</span> 0–49%: Urgente &nbsp;
+            <span style="color:#854d0e">■</span> 50–89%: Atenção &nbsp;
+            <span style="color:#16a34a">■</span> 90–100%: Bom trabalho
+          </div>
+        </div>
+        <div class="card">
+          <h2>Produção de Cabinas — Julho (h)</h2>
+          <table class="eq-table">
+            <thead><tr><th>Obra</th><th style="text-align:center">Teto</th><th style="text-align:center">Assoalho</th><th style="text-align:center">Cabina</th><th style="text-align:center">Total</th></tr></thead>
+            <tbody>
+              <tr><td>Res. "Bella Collina" – Serviço</td><td style="text-align:center">8,0</td><td style="text-align:center">11,5</td><td style="text-align:center">12,5</td><td style="text-align:center"><strong>32,0</strong></td></tr>
+              <tr><td>Res. "Bella Collina" – Social</td><td style="text-align:center">7,25</td><td style="text-align:center">8,25</td><td style="text-align:center">13,25</td><td style="text-align:center"><strong>28,75</strong></td></tr>
+              <tr><td>Res. "Jardim do Forte" – Social</td><td style="text-align:center">10,5</td><td style="text-align:center">8,5</td><td style="text-align:center">13,0</td><td style="text-align:center"><strong>32,0</strong></td></tr>
+              <tr><td>Fábrica "Yaskawa/Motoman" 02</td><td style="text-align:center">10,0</td><td style="text-align:center">9,0</td><td style="text-align:center">13,5</td><td style="text-align:center"><strong>32,5</strong></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ VENDAS ═══ -->
+  <div id="vendas" class="section">
+    <div class="periodo-badge">Julho / 2026</div>
+    <div class="section-title">🔩 Funil de Peças</div>
+    <div class="kpis" style="grid-template-columns:repeat(5,1fr)" id="vendasKpis"></div>
+    <div class="charts-row-equal" style="margin-bottom:24px">
+      <div class="card"><h2>Evolução Negócios Ganhos — Peças</h2><div class="chart-wrap-md"><canvas id="chartVendasEvolucao"></canvas></div></div>
+      <div class="card">
+        <h2>Indicadores Peças — Jul/26</h2>
+        <table class="eq-table">
+          <thead><tr><th>Indicador</th><th>Resultado</th><th>Variação</th></tr></thead>
+          <tbody>
+            <tr><td>Negócios Ganhos</td><td><strong>25</strong></td><td class="delta-up">+8</td></tr>
+            <tr><td>Valor Ganho</td><td><strong>R$ 80.812,75</strong></td><td class="delta-up">+R$ 16.775,75</td></tr>
+            <tr><td>Negócios Iniciados</td><td><strong>27</strong></td><td class="delta-up">+4</td></tr>
+            <tr><td>Valor Iniciado</td><td><strong>R$ 95.487,75</strong></td><td class="delta-up">+R$ 3.319,25</td></tr>
+            <tr><td>Negócios Perdidos</td><td><strong>1</strong></td><td style="color:#94a3b8">+0</td></tr>
+            <tr><td>Ticket Médio</td><td><strong>R$ 3.232,51</strong></td><td style="color:#ef4444">-R$ 534,37</td></tr>
+            <tr><td>Ciclo Médio</td><td><strong>7 dias</strong></td><td style="color:#ef4444">+1 dia</td></tr>
+            <tr><td>Taxa Conv. (qtd)</td><td><strong>96,2%</strong></td><td class="delta-up">+1,8%</td></tr>
+            <tr><td>Taxa Conv. (valor)</td><td><strong>92,7%</strong></td><td class="delta-up">+44,2%</td></tr>
+            <tr><td>Motivo de Perda</td><td colspan="2">Desistência (100%)</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="card" style="margin-bottom:24px">
+      <h2>Produtos Mais Vendidos — Peças (por valor)</h2>
+      <div class="chart-wrap-md"><canvas id="chartProdutos"></canvas></div>
+    </div>
+    <div class="section-title" style="margin-top:8px">🔧 Funil de Manutenção</div>
+    <div class="kpis" style="grid-template-columns:repeat(5,1fr)" id="manutKpis"></div>
+    <div class="charts-row-equal" style="margin-bottom:16px">
+      <div class="card"><h2>Evolução Negócios Ganhos — Manutenção</h2><div class="chart-wrap-md"><canvas id="chartManutEvolucao"></canvas></div></div>
+      <div class="card">
+        <h2>Indicadores Manutenção — Jul/26</h2>
+        <table class="eq-table">
+          <thead><tr><th>Indicador</th><th>Resultado</th><th>Variação</th></tr></thead>
+          <tbody>
+            <tr><td>Negócios Ganhos</td><td><strong>2</strong></td><td class="delta-up">+1</td></tr>
+            <tr><td>Valor Ganho</td><td><strong>R$ 3.500,00</strong></td><td style="color:#ef4444">-R$ 1.000,00</td></tr>
+            <tr><td>Negócios Iniciados</td><td><strong>2</strong></td><td style="color:#ef4444">-2</td></tr>
+            <tr><td>Valor Iniciado</td><td><strong>R$ 3.400,00</strong></td><td style="color:#ef4444">-R$ 6.100,00</td></tr>
+            <tr><td>Negócios Perdidos</td><td><strong>0</strong></td><td class="delta-up">-1</td></tr>
+            <tr><td>Ticket Médio</td><td><strong>R$ 1.750,00</strong></td><td style="color:#ef4444">-R$ 2.750,00</td></tr>
+            <tr><td>Ciclo Médio</td><td><strong>12 dias</strong></td><td class="delta-up">-28 dias</td></tr>
+            <tr><td>Taxa Conv. (qtd)</td><td><strong>100%</strong></td><td class="delta-up">+50%</td></tr>
+            <tr><td>Taxa Conv. (valor)</td><td><strong>100%</strong></td><td class="delta-up">+21,1%</td></tr>
+            <tr><td>Motivo de Perda</td><td colspan="2">Nenhuma perda</td></tr>
+          </tbody>
+        </table>
+      </div>
     </div>
   </div>
 
@@ -170,16 +304,70 @@
     <div class="charts-row-2">
       <div class="card"><h2>Faturamento Mensal 2026</h2><div class="chart-wrap-tall"><canvas id="chartFat"></canvas></div></div>
       <div class="card">
-        <h2>Histórico Jan–Jun/26</h2>
+        <h2>Histórico Jan–Jul/26</h2>
         <table class="fat-table">
           <thead><tr><th>Mês</th><th>Peças + Mala</th><th>Serviços</th><th>Total</th><th></th></tr></thead>
           <tbody>
             <tr><td>Janeiro</td><td>R$ 78.288</td><td>—</td><td>—</td><td></td></tr>
-            <tr><td>Fevereiro</td><td>R$ 117.788</td><td>—</td><td>—</td><td><span class="fat-highlight">▲ Melhor anterior</span></td></tr>
+            <tr><td>Fevereiro</td><td>R$ 117.788</td><td>—</td><td>—</td><td></td></tr>
             <tr><td>Março</td><td>R$ 90.173</td><td>—</td><td>—</td><td></td></tr>
             <tr><td>Abril</td><td>R$ 107.104</td><td>—</td><td>—</td><td></td></tr>
             <tr><td>Maio</td><td>R$ 54.914</td><td>—</td><td>—</td><td><span class="fat-low">▼ Pior mês</span></td></tr>
-            <tr><td>Junho</td><td>R$ 109.177</td><td>R$ 39.378</td><td>R$ 148.555</td><td><span class="fat-highlight">+98,8% vs Mai</span></td></tr>
+            <tr><td>Junho</td><td>R$ 109.177</td><td>R$ 39.378</td><td>R$ 148.555</td><td><span class="fat-highlight">▲ Melhor mês</span></td></tr>
+            <tr><td>Julho</td><td>R$ 88.488</td><td>R$ 8.788</td><td>R$ 97.276</td><td><span style="font-size:.75rem;color:#94a3b8">-34,5% vs Jun</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="charts-row-3" style="margin-top:16px">
+      <div class="card" style="grid-column:span 1">
+        <h2>Top Clientes — Julho/26</h2>
+        <table class="eq-table">
+          <thead><tr><th>#</th><th>Cliente</th><th style="text-align:right">Total</th></tr></thead>
+          <tbody>
+            <tr><td>1</td><td>Res. Praia Pacce</td><td style="text-align:right">R$ 12.982</td></tr>
+            <tr><td>2</td><td>Cond. Res. Veneza</td><td style="text-align:right">R$ 11.100</td></tr>
+            <tr><td>3</td><td>Res. Royal Garden</td><td style="text-align:right">R$ 7.870</td></tr>
+            <tr><td>4</td><td>Res. Green Garden</td><td style="text-align:right">R$ 7.332</td></tr>
+            <tr><td>5</td><td>Residencial Veneto</td><td style="text-align:right">R$ 5.179</td></tr>
+            <tr><td>6</td><td>Ed. Copacabana</td><td style="text-align:right">R$ 5.150</td></tr>
+            <tr><td>7</td><td>Res. Jd. das Tulipas</td><td style="text-align:right">R$ 4.919</td></tr>
+            <tr><td>8</td><td>Centro Professorado Paulista</td><td style="text-align:right">R$ 4.500</td></tr>
+            <tr><td>9</td><td>Res. Praia do Leblon</td><td style="text-align:right">R$ 4.436</td></tr>
+            <tr><td>10</td><td>Cond. Res. Santa Edwiges</td><td style="text-align:right">R$ 4.361</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="card">
+        <h2>Top Peças por Quantidade — Jul/26</h2>
+        <table class="eq-table">
+          <thead><tr><th>#</th><th>Peça</th><th style="text-align:right">Qtde</th></tr></thead>
+          <tbody>
+            <tr><td>1</td><td>Cabo Aço Polido 5/16 8x19</td><td style="text-align:right">160</td></tr>
+            <tr><td>2</td><td>Nylon Corrediça Lateral</td><td style="text-align:right">80</td></tr>
+            <tr><td>3</td><td>Mola de Corrediça</td><td style="text-align:right">80</td></tr>
+            <tr><td>4</td><td>Óleo p/ Máquina de Tração</td><td style="text-align:right">60</td></tr>
+            <tr><td>5</td><td>Terminal Pino Curto Isolado</td><td style="text-align:right">48</td></tr>
+            <tr><td>6</td><td>Cabo Blindado Mono</td><td style="text-align:right">46</td></tr>
+            <tr><td>7</td><td>Nylon Corrediça do Fundo</td><td style="text-align:right">40</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="card">
+        <h2>Top Peças por Faturamento — Jul/26</h2>
+        <table class="eq-table">
+          <thead><tr><th>#</th><th>Peça</th><th style="text-align:right">Total</th></tr></thead>
+          <tbody>
+            <tr><td>1</td><td>Nylon Corrediça Lateral</td><td style="text-align:right">R$ 9.200</td></tr>
+            <tr><td>2</td><td>Rampa Móvel</td><td style="text-align:right">R$ 8.187</td></tr>
+            <tr><td>3</td><td>Cabo Aço Polido 5/16 8x19</td><td style="text-align:right">R$ 7.200</td></tr>
+            <tr><td>4</td><td>Óleo p/ Máquina de Tração</td><td style="text-align:right">R$ 6.513</td></tr>
+            <tr><td>5</td><td>Nylon Corrediça do Fundo</td><td style="text-align:right">R$ 4.600</td></tr>
+            <tr><td>6</td><td>Inversor de Freq. Operador Porta</td><td style="text-align:right">R$ 4.500</td></tr>
+            <tr><td>7</td><td>Mola de Corrediça</td><td style="text-align:right">R$ 3.700</td></tr>
+            <tr><td>8</td><td>Placa Eletr. Retificadora PRT-04</td><td style="text-align:right">R$ 3.518</td></tr>
+            <tr><td>9</td><td>Roldana 50mm Montada Barra Porta</td><td style="text-align:right">R$ 3.496</td></tr>
+            <tr><td>10</td><td>Barreira Infravermelha Cabina</td><td style="text-align:right">R$ 3.200</td></tr>
           </tbody>
         </table>
       </div>
@@ -191,46 +379,161 @@
     <div class="rh-kpis" id="rhKpis"></div>
     <div class="rh-grid">
       <div class="card">
+        <h2>Turnover — Detalhamento</h2>
+        <table class="eq-table">
+          <thead><tr><th>Indicador</th><th>Resultado</th></tr></thead>
+          <tbody>
+            <tr><td>Total Colaboradores</td><td><strong>58</strong></td></tr>
+            <tr><td>Desligamentos</td><td><strong>3</strong></td></tr>
+            <tr><td>Turnover Geral</td><td><strong>5,17%</strong></td></tr>
+            <tr><td>Turnover Voluntário</td><td><strong>1</strong> (Joel Dias Nascimento — mai/26)</td></tr>
+            <tr><td>Turnover Involuntário</td><td><strong>2</strong> (Andre Nunes — abr/26; Ryan Leite — abr/26)</td></tr>
+            <tr><td>% Desligamentos Voluntários</td><td><strong>33,33%</strong></td></tr>
+            <tr><td>% Desligamentos Involuntários</td><td><strong>66,67%</strong></td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="card">
         <h2>Recrutamento</h2>
         <table class="eq-table">
           <thead><tr><th>Indicador</th><th>Resultado</th></tr></thead>
           <tbody>
-            <tr><td>Total de vagas</td><td>3</td></tr>
-            <tr><td>Vagas fechadas</td><td>3</td></tr>
-            <tr><td>Vagas abertas</td><td>0</td></tr>
-            <tr><td>% vagas abertas</td><td>0,00%</td></tr>
+            <tr><td>Total de vagas</td><td><strong>6</strong></td></tr>
+            <tr><td>Vagas fechadas</td><td>4</td></tr>
+            <tr><td>Vagas em aberto</td><td>2</td></tr>
             <tr><td>Tempo médio de contratação</td><td>56,7 dias</td></tr>
             <tr><td>Vagas acima de 30 dias</td><td>3</td></tr>
             <tr><td>Vagas acima de 60 dias</td><td>0</td></tr>
           </tbody>
         </table>
       </div>
+    </div>
+    <div class="rh-grid">
       <div class="card">
-        <h2>Onboarding &amp; Experiência</h2>
+        <h2>Onboarding — 30 dias</h2>
         <table class="eq-table">
           <thead><tr><th>Indicador</th><th>Resultado</th></tr></thead>
           <tbody>
-            <tr><td colspan="2" style="font-weight:600;color:#0d9488;padding-top:12px">30 dias</td></tr>
             <tr><td>Avaliações realizadas</td><td>2</td></tr>
-            <tr><td>% avaliações realizadas</td><td>66,67%</td></tr>
+            <tr><td>% avaliações realizadas</td><td>50%</td></tr>
+            <tr><td>% feedback positivo</td><td>1</td></tr>
+            <tr><td>% feedback negativo</td><td>0</td></tr>
             <tr><td>Qualidade onboarding</td><td>0,5</td></tr>
-            <tr><td colspan="2" style="font-weight:600;color:#f59e0b;padding-top:12px">60 dias (experiência)</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="card">
+        <h2>Experiência — 60 dias</h2>
+        <table class="eq-table">
+          <thead><tr><th>Indicador</th><th>Resultado</th></tr></thead>
+          <tbody>
             <tr><td>Total de avaliações</td><td>1</td></tr>
             <tr><td>Taxa de efetivação</td><td>0,00%</td></tr>
+            <tr><td>Taxa de não efetivação</td><td>0</td></tr>
           </tbody>
         </table>
       </div>
     </div>
     <div class="card">
-      <h2>Vagas Recrutadas</h2>
+      <h2>Histórico de Vagas</h2>
       <table class="eq-table">
-        <thead><tr><th>#</th><th>Vaga</th><th>Colaborador</th><th>Abertura</th><th>Contratação</th><th>Dias</th><th>SLA</th><th>Líder</th></tr></thead>
+        <thead><tr><th>#</th><th>Vaga</th><th>Colaborador</th><th>Abertura</th><th>Contratação</th><th>Dias</th><th>SLA</th><th>Líder</th><th>Status</th></tr></thead>
         <tbody>
-          <tr><td>1</td><td>Técnico de Segurança</td><td>Fernando Fernandes</td><td>05/02/2026</td><td>06/04/2026</td><td>60</td><td>60</td><td>Michel</td></tr>
-          <tr><td>2</td><td>Auxiliar de Almoxarifado</td><td>Isaque Vieira Gomes</td><td>15/03/2026</td><td>11/05/2026</td><td>57</td><td>30</td><td>Donizetti</td></tr>
-          <tr><td>3</td><td>Mecânico de Chamado</td><td>Allan dos Santos Fialho</td><td>21/05/2026</td><td>13/07/2026</td><td>53</td><td>60</td><td>Romildo</td></tr>
+          <tr><td>1</td><td>Técnico de Segurança</td><td>Fernando Fernandes</td><td>05/02/2026</td><td>06/04/2026</td><td>60</td><td>60</td><td>Michel</td><td><span class="prod-badge prod-green">Fechada</span></td></tr>
+          <tr><td>2</td><td>Auxiliar de Almoxarifado</td><td>Isaque Vieira Gomes</td><td>15/03/2026</td><td>11/05/2026</td><td>57</td><td>30</td><td>Donizetti</td><td><span class="prod-badge prod-green">Fechada</span></td></tr>
+          <tr><td>3</td><td>Ajudante de Manutenção</td><td>Allan dos Santos Fialho</td><td>21/05/2026</td><td>13/07/2026</td><td>53</td><td>60</td><td>Romildo</td><td><span class="prod-badge prod-green">Fechada</span></td></tr>
+          <tr><td>4</td><td>Ajudante de Montagem</td><td>Jeovânio</td><td>21/07/2026</td><td>12/08/2026</td><td>—</td><td>30</td><td>Leonardo</td><td><span class="prod-badge prod-green">Fechada</span></td></tr>
+          <tr><td>5</td><td>Ajudante de Montagem</td><td>—</td><td>21/07/2026</td><td>—</td><td>—</td><td>30</td><td>Leonardo</td><td><span class="prod-badge prod-yellow">Em aberto</span></td></tr>
+          <tr><td>6</td><td>Ajudante de Solda</td><td>—</td><td>24/07/2026</td><td>—</td><td>—</td><td>—</td><td>Donizetti</td><td><span class="prod-badge prod-yellow">Em aberto</span></td></tr>
         </tbody>
       </table>
+    </div>
+  </div>
+
+  <!-- ═══ SEGURANÇA ═══ -->
+  <div id="seguranca" class="section">
+    <div class="sst-grid">
+      <div class="sst-card red">
+        <div class="sst-val">1</div>
+        <div class="sst-label">Total de Acidentes 2026</div>
+        <div class="sst-sub">Tipo: Trajeto (100%)</div>
+      </div>
+      <div class="sst-card orange">
+        <div class="sst-val">42,09</div>
+        <div class="sst-label">Taxa de Frequência (TF)</div>
+        <div class="sst-sub">por milhão de horas trab. · <span style="background:#fee2e2;color:#dc2626;padding:2px 8px;border-radius:10px;font-size:.75rem;font-weight:700">Crítico (&gt;50 = acima da meta)</span></div>
+      </div>
+      <div class="sst-card blue">
+        <div class="sst-val">2,78</div>
+        <div class="sst-label">Índice Relativo de Acidentes (IRA)</div>
+        <div class="sst-sub"><span style="background:#fef9c3;color:#854d0e;padding:2px 8px;border-radius:10px;font-size:.75rem;font-weight:700">Atenção (1%–3%)</span></div>
+      </div>
+      <div class="sst-card green">
+        <div class="sst-val">69</div>
+        <div class="sst-label">Dias sem Acidentes</div>
+        <div class="sst-sub">Após 28/04/2026</div>
+      </div>
+    </div>
+    <div class="charts-row-2">
+      <div class="card">
+        <h2>Detalhes do Acidente — Abril/2026</h2>
+        <table class="eq-table">
+          <thead><tr><th>Campo</th><th>Informação</th></tr></thead>
+          <tbody>
+            <tr><td>Data</td><td>28/04/2026</td></tr>
+            <tr><td>Colaborador</td><td>Wender Wilker Nascimento</td></tr>
+            <tr><td>Função</td><td>Mecânico de Chamado</td></tr>
+            <tr><td>Tipo</td><td>Trajeto</td></tr>
+            <tr><td>Afastamento</td><td>Sim</td></tr>
+            <tr><td>Local da Lesão</td><td>Dedos</td></tr>
+            <tr><td>CÓD</td><td>A-1</td></tr>
+            <tr><td>Descrição</td><td>Retornava à empresa pela Av. Castelo Branco (nº 1840) após atendimento de cliente. Conduzia motocicleta em mão preferencial e acertou ciclista que não estava na ciclovia.</td></tr>
+            <tr><td>CAT</td><td>Aberta</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="card">
+        <h2>Metas SST — Classificação</h2>
+        <div style="margin-bottom:16px">
+          <div style="font-size:.82rem;font-weight:600;color:#475569;margin-bottom:8px">Taxa de Frequência (TF) — por milhão de horas:</div>
+          <table class="eq-table">
+            <thead><tr><th>Classificação</th><th>TF</th><th>Torres (42,09)</th></tr></thead>
+            <tbody>
+              <tr><td>Excelente</td><td>Até 5</td><td></td></tr>
+              <tr><td>Bom</td><td>5 a 15</td><td></td></tr>
+              <tr><td>Regular / Atenção</td><td>15 a 30</td><td></td></tr>
+              <tr><td>Alto (requer ação)</td><td>30 a 50</td><td style="color:#f59e0b;font-weight:700">← Aqui</td></tr>
+              <tr style="background:#fff0f0"><td><strong>Crítico</strong></td><td><strong>Acima de 50</strong></td><td></td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div>
+          <div style="font-size:.82rem;font-weight:600;color:#475569;margin-bottom:8px">Índice Relativo de Acidentes (IRA):</div>
+          <table class="eq-table">
+            <thead><tr><th>Classificação</th><th>IRA</th><th>Torres (2,78)</th></tr></thead>
+            <tbody>
+              <tr><td>Excelente</td><td>Até 1%</td><td></td></tr>
+              <tr><td>Bom</td><td>1% a 3%</td><td style="color:#f59e0b;font-weight:700">← Aqui</td></tr>
+              <tr><td>Atenção</td><td>3% a 5%</td><td></td></tr>
+              <tr><td>Alto</td><td>Acima de 5%</td><td></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+    <div class="card" style="margin-top:16px">
+      <h2>NR-01 — Ações em Andamento</h2>
+      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-top:8px">
+        <div style="background:#f5f3ff;border-radius:10px;padding:14px;font-size:.84rem;color:#4c1d95;border-left:4px solid #8b5cf6">
+          Questionário psicossocial enviado via WhatsApp a todos os colaboradores. Prazo: 30 dias a partir de 10/06.
+        </div>
+        <div style="background:#f0fdf4;border-radius:10px;padding:14px;font-size:.84rem;color:#14532d;border-left:4px solid #22c55e">
+          Temas relacionados ao assédio abordados nas reuniões da CIPA.
+        </div>
+        <div style="background:#eff6ff;border-radius:10px;padding:14px;font-size:.84rem;color:#1e3a8a;border-left:4px solid #3b82f6">
+          NR-01 incluída na Ordem de Serviço (OS) — entrega prevista para julho/2026.
+        </div>
+      </div>
     </div>
   </div>
 
@@ -293,13 +596,80 @@ function dotClass(s){
   if(u.includes('AGUARD')||u.includes('FALTA')||u.includes('NÃO')||u.includes('A LIBERAR')||u.includes('ARAME')||u.includes('VAMOS')||u.includes('PRONTA')||u.includes('JÁ NA')||u.includes('MAQUINA ENTREGUE')||u.includes('RECEBEU'))return'dot dot-ag';
   return'dot dot-sem';
 }
-
 function showTab(id,el){
   document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));
   document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
   document.getElementById(id).classList.add('active');
   el.classList.add('active');
 }
+
+// ══ PRODUÇÃO seletor de mês ══
+let prodChartsInit={};
+function showProd(mes,el){
+  document.querySelectorAll('.prod-section').forEach(s=>s.style.display='none');
+  document.querySelectorAll('.month-tab').forEach(t=>t.classList.remove('active'));
+  document.getElementById('prod-'+mes).style.display='block';
+  el.classList.add('active');
+  if(!prodChartsInit[mes]){
+    initProdCharts(mes);
+    prodChartsInit[mes]=true;
+  }
+}
+
+const prodDataAll={
+  mai:{
+    plan:[{produto:'Barras de Porta Central',plan:150,exec:100,pct:67},{produto:'Portas de Pavimento',plan:100,exec:89,pct:89},{produto:'Cabinas',plan:7,exec:3,pct:43},{produto:'Batentes Centrais',plan:100,exec:100,pct:100},{produto:'Ferragens de Cabinas',plan:3,exec:3,pct:100}],
+    criticos:1,acima:0,media:Math.round((67+89+43+100+100)/5),cabinas:3
+  },
+  jun:{
+    plan:[{produto:'Barras de Porta Central',plan:100,exec:50,pct:50},{produto:'Portas de Pavimento',plan:200,exec:100,pct:50},{produto:'Cabinas',plan:6,exec:3,pct:50},{produto:'Batentes Centrais',plan:127,exec:103,pct:81},{produto:'Ferragens de Cabinas',plan:5,exec:5,pct:100}],
+    criticos:0,acima:0,media:Math.round((50+50+50+81+100)/5),cabinas:3
+  },
+  jul:{
+    plan:[{produto:'Barras de Porta Central',plan:200,exec:150,pct:75},{produto:'Portas de Pavimento',plan:100,exec:111,pct:111},{produto:'Cabinas',plan:8,exec:4,pct:50},{produto:'Batentes Centrais',plan:70,exec:0,pct:0},{produto:'Ferragens de Cabinas',plan:6,exec:5,pct:83}],
+    criticos:1,acima:1,media:Math.round((75+100+50+0+83)/5),cabinas:4
+  }
+};
+
+function prodBadge(pct){
+  if(pct>100)return`<span class="prod-badge prod-blue">✓ ${pct.toFixed(0)}%</span>`;
+  if(pct>=90)return`<span class="prod-badge prod-green">✓ ${pct.toFixed(0)}%</span>`;
+  if(pct>=50)return`<span class="prod-badge prod-yellow">⚠ ${pct.toFixed(0)}%</span>`;
+  return`<span class="prod-badge prod-red">✕ ${pct.toFixed(0)}%</span>`;
+}
+function prodSit(pct){
+  if(pct>100)return'<span class="prod-badge prod-blue">Acima do Plano</span>';
+  if(pct>=90)return'<span class="prod-badge prod-green">Bom trabalho</span>';
+  if(pct>=50)return'<span class="prod-badge prod-yellow">Atenção</span>';
+  return'<span class="prod-badge prod-red">Urgente</span>';
+}
+
+function initProdCharts(mes){
+  const d=prodDataAll[mes];
+  const kpiEl=document.getElementById('prodKpis'+mes.charAt(0).toUpperCase()+mes.slice(1));
+  kpiEl.innerHTML=`
+    <div class="kpi blue"><div class="kpi-val">5</div><div class="kpi-pct">itens</div><div class="kpi-label">Produtos Planejados</div></div>
+    <div class="kpi green"><div class="kpi-val">${d.acima}</div><div class="kpi-pct">acima do plano</div><div class="kpi-label">Superaram Meta</div></div>
+    <div class="kpi orange"><div class="kpi-val">${d.media}%</div><div class="kpi-pct">média geral</div><div class="kpi-label">% Execução</div></div>
+    <div class="kpi red"><div class="kpi-val">${d.criticos}</div><div class="kpi-pct">abaixo de 50%</div><div class="kpi-label">Críticos</div></div>
+    <div class="kpi teal"><div class="kpi-val">${d.cabinas}</div><div class="kpi-pct">cabinas produzidas</div><div class="kpi-label">Produção Cabinas</div></div>
+  `;
+  document.getElementById('planTable'+mes.charAt(0).toUpperCase()+mes.slice(1)).innerHTML=d.plan.map(r=>`
+    <tr><td>${r.produto}</td><td style="text-align:center">${r.plan}</td><td style="text-align:center">${r.exec}</td><td style="text-align:center">${prodBadge(r.pct)}</td><td>${prodSit(r.pct)}</td></tr>`).join('');
+  const execColors=d.plan.map(r=>r.pct>=90?'#22c55e':r.pct>=50?'#f59e0b':'#ef4444');
+  new Chart(document.getElementById('chartPlan'+mes.charAt(0).toUpperCase()+mes.slice(1)),{
+    type:'bar',data:{labels:d.plan.map(r=>r.produto.length>20?r.produto.substring(0,20)+'…':r.produto),datasets:[{label:'Planejado',data:d.plan.map(r=>r.plan),backgroundColor:'#cbd5e1',borderRadius:4,borderWidth:0},{label:'Executado',data:d.plan.map(r=>r.exec),backgroundColor:'#3b82f6',borderRadius:4,borderWidth:0}]},
+    options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'bottom',labels:{font:{size:11},boxWidth:12,padding:8}}},scales:{x:{ticks:{font:{size:10}}},y:{ticks:{font:{size:11}}}}}
+  });
+  new Chart(document.getElementById('chartExec'+mes.charAt(0).toUpperCase()+mes.slice(1)),{
+    type:'bar',data:{labels:d.plan.map(r=>r.produto.length>20?r.produto.substring(0,20)+'…':r.produto),datasets:[{label:'% Executado',data:d.plan.map(r=>Math.min(r.pct,100)),backgroundColor:execColors,borderRadius:4,borderWidth:0}]},
+    options:{responsive:true,maintainAspectRatio:false,indexAxis:'y',plugins:{legend:{display:false},tooltip:{callbacks:{label:ctx=>ctx.raw.toFixed(0)+'%'}}},scales:{x:{max:100,ticks:{callback:v=>v+'%'}},y:{ticks:{font:{size:10}}}}}
+  });
+}
+
+// Inicializa Maio ao carregar
+initProdCharts('mai');
+prodChartsInit['mai']=true;
 
 // ══ MONTAGEM ══
 const statusCount={};
@@ -366,128 +736,55 @@ function renderTable(){
 searchEl.addEventListener('input',renderTable);filtStatus.addEventListener('change',renderTable);filtTipo.addEventListener('change',renderTable);filtFase.addEventListener('change',renderTable);
 renderTable();
 
-// ══ PRODUÇÃO ══
-const planData=[
-  {produto:'Barras de Porta Central',plan:200,exec:150,pct:75},
-  {produto:'Portas de Pavimento',plan:100,exec:111,pct:111},
-  {produto:'Cabinas',plan:8,exec:4,pct:50},
-  {produto:'Batentes Centrais',plan:70,exec:0,pct:0},
-  {produto:'Ferragens de Cabinas',plan:6,exec:5,pct:83.33},
-];
-function prodBadge(pct){
-  if(pct>=90)return`<span class="prod-badge prod-green">✓ ${pct.toFixed(0)}%</span>`;
-  if(pct>=50)return`<span class="prod-badge prod-yellow">⚠ ${pct.toFixed(0)}%</span>`;
-  return`<span class="prod-badge prod-red">✕ ${pct.toFixed(0)}%</span>`;
-}
-function prodSit(pct){
-  if(pct>100)return'<span class="prod-badge prod-blue">Acima do Plano</span>';
-  if(pct>=90)return'<span class="prod-badge prod-green">Bom trabalho</span>';
-  if(pct>=50)return'<span class="prod-badge prod-yellow">Atenção</span>';
-  return'<span class="prod-badge prod-red">Urgente</span>';
-}
-
-// KPIs produção
-const totalPlan=planData.reduce((s,r)=>s+r.plan,0);
-const totalExec=planData.reduce((s,r)=>s+Math.min(r.exec,r.plan),0);
-const mediaExec=planData.reduce((s,r)=>s+Math.min(r.pct,100),0)/planData.length;
-const acima=planData.filter(r=>r.pct>100).length;
-const criticos=planData.filter(r=>r.pct<50).length;
-document.getElementById('prodKpis').innerHTML=`
-  <div class="kpi blue"><div class="kpi-val">5</div><div class="kpi-pct">itens</div><div class="kpi-label">Produtos Planejados</div></div>
-  <div class="kpi green"><div class="kpi-val">${acima}</div><div class="kpi-pct">acima do plano</div><div class="kpi-label">Superaram Meta</div></div>
-  <div class="kpi orange"><div class="kpi-val">${Math.round(mediaExec)}%</div><div class="kpi-pct">média geral</div><div class="kpi-label">% Execução</div></div>
-  <div class="kpi red"><div class="kpi-val">${criticos}</div><div class="kpi-pct">abaixo de 50%</div><div class="kpi-label">Críticos</div></div>
-  <div class="kpi teal"><div class="kpi-val">4</div><div class="kpi-pct">cabinas produzidas</div><div class="kpi-label">Produção Cabinas</div></div>
+// ══ VENDAS ══
+document.getElementById('vendasKpis').innerHTML=`
+  <div class="kpi green"><div class="kpi-val">25</div><div class="kpi-pct">+8 vs período ant.</div><div class="kpi-label">Negócios Ganhos</div></div>
+  <div class="kpi blue"><div class="kpi-val">R$ 80,8k</div><div class="kpi-pct">+R$ 16,8k</div><div class="kpi-label">Valor Ganho</div></div>
+  <div class="kpi orange"><div class="kpi-val">R$ 3.232</div><div class="kpi-pct">-R$ 534 vs ant.</div><div class="kpi-label">Ticket Médio</div></div>
+  <div class="kpi teal"><div class="kpi-val">96,2%</div><div class="kpi-pct">+1,8%</div><div class="kpi-label">Taxa de Conversão</div></div>
+  <div class="kpi gray"><div class="kpi-val">7 dias</div><div class="kpi-pct">+1 dia</div><div class="kpi-label">Ciclo Médio</div></div>
 `;
-
-document.getElementById('planTable').innerHTML=planData.map(r=>`
-  <tr>
-    <td>${r.produto}</td>
-    <td style="text-align:center">${r.plan}</td>
-    <td style="text-align:center">${r.exec}</td>
-    <td style="text-align:center">${prodBadge(r.pct)}</td>
-    <td>${prodSit(r.pct)}</td>
-  </tr>`).join('');
-
-new Chart(document.getElementById('chartPlan'),{
-  type:'bar',
-  data:{
-    labels:planData.map(r=>r.produto.length>20?r.produto.substring(0,20)+'…':r.produto),
-    datasets:[
-      {label:'Planejado',data:planData.map(r=>r.plan),backgroundColor:'#cbd5e1',borderRadius:4,borderWidth:0},
-      {label:'Executado',data:planData.map(r=>r.exec),backgroundColor:'#3b82f6',borderRadius:4,borderWidth:0}
-    ]
-  },
-  options:{
-    responsive:true,maintainAspectRatio:false,
-    plugins:{legend:{position:'bottom',labels:{font:{size:11},boxWidth:12,padding:8}}},
-    scales:{x:{ticks:{font:{size:10}}},y:{ticks:{font:{size:11}}}}
-  }
+new Chart(document.getElementById('chartVendasEvolucao'),{
+  type:'line',data:{labels:['Fev/26','Mar/26','Abr/26','Mai/26','Jun/26','Jul/26'],datasets:[{label:'Valor ganho (R$)',data:[100000,95000,100000,185000,60000,80813],borderColor:'#22c55e',backgroundColor:'rgba(34,197,94,0.1)',fill:true,tension:0.4,pointBackgroundColor:'#22c55e',pointRadius:5}]},
+  options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{callbacks:{label:ctx=>'R$ '+ctx.raw.toLocaleString('pt-BR')}}},scales:{y:{ticks:{callback:v=>'R$ '+(v/1000).toFixed(0)+'k'}}}}
 });
-
-const execColors=planData.map(r=>r.pct>=90?'#22c55e':r.pct>=50?'#f59e0b':'#ef4444');
-new Chart(document.getElementById('chartExec'),{
+new Chart(document.getElementById('chartProdutos'),{
   type:'bar',
-  data:{
-    labels:planData.map(r=>r.produto.length>20?r.produto.substring(0,20)+'…':r.produto),
-    datasets:[{label:'% Executado',data:planData.map(r=>Math.min(r.pct,100)),backgroundColor:execColors,borderRadius:4,borderWidth:0}]
-  },
-  options:{
-    responsive:true,maintainAspectRatio:false,indexAxis:'y',
-    plugins:{legend:{display:false},tooltip:{callbacks:{label:ctx=>ctx.raw.toFixed(1)+'%'} } },
-    scales:{x:{max:100,ticks:{callback:v=>v+'%'} },y:{ticks:{font:{size:10}}}}
-  }
+  data:{labels:['COXIN CABINA/CP','CABO DE AÇO 5/16 8x19','BARREIRA INFRAVERMELHA','RAMPA MÓVEL','ÓLEO LUBRAX 220','INVERSOR DO OPERADOR','PLACA PRT-04 24/115V','CONTATO SEGURANÇA','PLACA TOTEM','Outros'],
+    datasets:[{label:'Por valor',data:[12,10,9,8,7,6,5,4,3,29],backgroundColor:['#8b5cf6','#3b82f6','#0ea5e9','#0d9488','#22c55e','#84cc16','#eab308','#f97316','#ef4444','#94a3b8'],borderRadius:4,borderWidth:0}]},
+  options:{responsive:true,maintainAspectRatio:false,indexAxis:'y',plugins:{legend:{display:false},tooltip:{callbacks:{label:ctx=>ctx.raw+'% do valor'}}},scales:{x:{ticks:{callback:v=>v+'%'}}}}
 });
-
-const cabinaObras=['Bella Collina Serv.','Bella Collina Soc.','Jardim do Forte','Yaskawa/Motoman'];
-new Chart(document.getElementById('chartCabinas'),{
-  type:'bar',
-  data:{
-    labels:cabinaObras,
-    datasets:[
-      {label:'Teto',data:[8,7.25,10.5,10],backgroundColor:'#3b82f6',borderRadius:4,borderWidth:0},
-      {label:'Assoalho',data:[11.5,8.25,8.5,9],backgroundColor:'#8b5cf6',borderRadius:4,borderWidth:0},
-      {label:'Cabina',data:[12.5,13.25,13,13.5],backgroundColor:'#22c55e',borderRadius:4,borderWidth:0}
-    ]
-  },
-  options:{
-    responsive:true,maintainAspectRatio:false,
-    plugins:{legend:{position:'bottom',labels:{font:{size:11},boxWidth:12,padding:8}},tooltip:{callbacks:{label:ctx=>ctx.dataset.label+': '+ctx.raw+'h'} } },
-    scales:{x:{stacked:true,ticks:{font:{size:10}}},y:{stacked:true,ticks:{callback:v=>v+'h'} } }
-  }
+document.getElementById('manutKpis').innerHTML=`
+  <div class="kpi green"><div class="kpi-val">2</div><div class="kpi-pct">+1 vs período ant.</div><div class="kpi-label">Negócios Ganhos</div></div>
+  <div class="kpi teal"><div class="kpi-val">R$ 3.500</div><div class="kpi-pct">-R$ 1.000</div><div class="kpi-label">Valor Ganho</div></div>
+  <div class="kpi orange"><div class="kpi-val">R$ 1.750</div><div class="kpi-pct">-R$ 2.750</div><div class="kpi-label">Ticket Médio</div></div>
+  <div class="kpi blue"><div class="kpi-val">100%</div><div class="kpi-pct">+50%</div><div class="kpi-label">Taxa de Conversão</div></div>
+  <div class="kpi gray"><div class="kpi-val">12 dias</div><div class="kpi-pct">-28 dias</div><div class="kpi-label">Ciclo Médio</div></div>
+`;
+new Chart(document.getElementById('chartManutEvolucao'),{
+  type:'line',data:{labels:['Fev/26','Mar/26','Abr/26','Mai/26','Jun/26','Jul/26'],datasets:[{label:'Valor ganho (R$)',data:[0,0,0,4500,4500,3500],borderColor:'#0d9488',backgroundColor:'rgba(13,148,136,0.1)',fill:true,tension:0.4,pointBackgroundColor:'#0d9488',pointRadius:5}]},
+  options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{callbacks:{label:ctx=>'R$ '+ctx.raw.toLocaleString('pt-BR')}}},scales:{y:{ticks:{callback:v=>'R$ '+v.toLocaleString('pt-BR')}}}}
 });
 
 // ══ FATURAMENTO ══
 document.getElementById('fatKpis').innerHTML=`
-  <div class="kpi blue"><div class="kpi-val">R$ 558k</div><div class="kpi-pct">Jan–Jun/26</div><div class="kpi-label">Peças + Mala acumulado</div></div>
+  <div class="kpi blue"><div class="kpi-val">R$ 647k</div><div class="kpi-pct">Jan–Jul/26</div><div class="kpi-label">Peças + Mala acumulado</div></div>
   <div class="kpi green"><div class="kpi-val">R$ 148.555</div><div class="kpi-pct">melhor mês</div><div class="kpi-label">Junho/26 (total)</div></div>
   <div class="kpi red"><div class="kpi-val">R$ 54.914</div><div class="kpi-pct">pior mês</div><div class="kpi-label">Maio/26</div></div>
-  <div class="kpi orange"><div class="kpi-val">+98,8%</div><div class="kpi-pct">Jun vs Mai</div><div class="kpi-label">Crescimento</div></div>
+  <div class="kpi orange"><div class="kpi-val">R$ 97.276</div><div class="kpi-pct">Peças + Serviços</div><div class="kpi-label">Julho/26 (total)</div></div>
 `;
 new Chart(document.getElementById('chartFat'),{
   type:'bar',
-  data:{
-    labels:['Jan','Fev','Mar','Abr','Mai','Jun'],
-    datasets:[
-      {label:'Peças + Mala',data:[78288,117788,90173,107104,54914,109177],backgroundColor:'#3b82f6',borderRadius:4,borderWidth:0},
-      {label:'Serviços',data:[0,0,0,0,0,39378],backgroundColor:'#22c55e',borderRadius:4,borderWidth:0}
-    ]
-  },
-  options:{
-    responsive:true,maintainAspectRatio:false,
-    plugins:{legend:{position:'bottom',labels:{font:{size:11},boxWidth:12,padding:8}},tooltip:{callbacks:{label:ctx=>ctx.dataset.label+': R$ '+ctx.raw.toLocaleString('pt-BR')} } },
-    scales:{x:{stacked:true},y:{stacked:true,ticks:{callback:v=>'R$ '+(v/1000).toFixed(0)+'k'} } }
-  }
+  data:{labels:['Jan','Fev','Mar','Abr','Mai','Jun','Jul'],datasets:[{label:'Peças + Mala',data:[78288,117788,90173,107104,54914,109177,88488],backgroundColor:'#3b82f6',borderRadius:4,borderWidth:0},{label:'Serviços',data:[0,0,0,0,0,39378,8788],backgroundColor:'#22c55e',borderRadius:4,borderWidth:0}]},
+  options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'bottom',labels:{font:{size:11},boxWidth:12,padding:8}},tooltip:{callbacks:{label:ctx=>ctx.dataset.label+': R$ '+ctx.raw.toLocaleString('pt-BR')}}},scales:{x:{stacked:true},y:{stacked:true,ticks:{callback:v=>'R$ '+(v/1000).toFixed(0)+'k'}}}}
 });
 
 // ══ RH ══
 document.getElementById('rhKpis').innerHTML=`
-  <div class="rh-kpi blue"><div class="rh-kpi-val">57</div><div class="rh-kpi-label">Total Colaboradores</div></div>
-  <div class="rh-kpi red"><div class="rh-kpi-val">5,26%</div><div class="rh-kpi-label">Turnover Geral</div></div>
+  <div class="rh-kpi blue"><div class="rh-kpi-val">58</div><div class="rh-kpi-label">Total Colaboradores</div></div>
+  <div class="rh-kpi red"><div class="rh-kpi-val">5,17%</div><div class="rh-kpi-label">Turnover Geral</div></div>
   <div class="rh-kpi orange"><div class="rh-kpi-val">3</div><div class="rh-kpi-label">Desligamentos</div></div>
-  <div class="rh-kpi green"><div class="rh-kpi-val">3</div><div class="rh-kpi-label">Vagas Fechadas</div></div>
-  <div class="rh-kpi teal"><div class="rh-kpi-val">56,7 dias</div><div class="rh-kpi-label">Tempo Médio Contratação</div></div>
-  <div class="rh-kpi purple"><div class="rh-kpi-val">66,67%</div><div class="rh-kpi-label">Avaliações Onboarding</div></div>
+  <div class="rh-kpi green"><div class="rh-kpi-val">4</div><div class="rh-kpi-label">Vagas Fechadas</div></div>
 `;
 
 // ══ EQUIPAMENTOS ══
@@ -499,16 +796,8 @@ document.getElementById('eqKpis').innerHTML=`
 `;
 new Chart(document.getElementById('chartEq'),{
   type:'bar',
-  data:{
-    labels:['Maio','Junho'],
-    datasets:[
-      {label:'Com Contrato',data:[399,409],backgroundColor:'#22c55e',borderRadius:4,borderWidth:0},
-      {label:'Em Obra',data:[80,89],backgroundColor:'#3b82f6',borderRadius:4,borderWidth:0},
-      {label:'Sem Contrato',data:[11,11],backgroundColor:'#f59e0b',borderRadius:4,borderWidth:0},
-      {label:'Em Negociação',data:[3,0],backgroundColor:'#94a3b8',borderRadius:4,borderWidth:0}
-    ]
-  },
-  options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'bottom',labels:{font:{size:11},boxWidth:12,padding:8}}},scales:{x:{stacked:true},y:{stacked:true} } }
+  data:{labels:['Maio','Junho'],datasets:[{label:'Com Contrato',data:[399,409],backgroundColor:'#22c55e',borderRadius:4,borderWidth:0},{label:'Em Obra',data:[80,89],backgroundColor:'#3b82f6',borderRadius:4,borderWidth:0},{label:'Sem Contrato',data:[11,11],backgroundColor:'#f59e0b',borderRadius:4,borderWidth:0},{label:'Em Negociação',data:[3,0],backgroundColor:'#94a3b8',borderRadius:4,borderWidth:0}]},
+  options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'bottom',labels:{font:{size:11},boxWidth:12,padding:8}}},scales:{x:{stacked:true},y:{stacked:true}}}
 });
 
 document.getElementById('updateTime').textContent='Atualizado em: '+new Date().toLocaleDateString('pt-BR');
