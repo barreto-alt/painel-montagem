@@ -245,55 +245,121 @@
 
   <!-- ═══ VENDAS ═══ -->
   <div id="vendas" class="section">
-    <div class="periodo-badge">Julho / 2026</div>
-    <div class="section-title">🔩 Funil de Peças</div>
-    <div class="kpis" style="grid-template-columns:repeat(5,1fr)" id="vendasKpis"></div>
+    <div class="month-tabs">
+      <div class="month-tab" onclick="showVendas('jun',this)">Jun/26</div>
+      <div class="month-tab active" onclick="showVendas('jul',this)">Jul/26</div>
+    </div>
+    <!-- Evolução sempre visível -->
     <div class="charts-row-equal" style="margin-bottom:24px">
       <div class="card"><h2>Evolução Negócios Ganhos — Peças</h2><div class="chart-wrap-md"><canvas id="chartVendasEvolucao"></canvas></div></div>
-      <div class="card">
-        <h2>Indicadores Peças — Jul/26</h2>
-        <table class="eq-table">
-          <thead><tr><th>Indicador</th><th>Resultado</th><th>Variação</th></tr></thead>
-          <tbody>
-            <tr><td>Negócios Ganhos</td><td><strong>25</strong></td><td class="delta-up">+8</td></tr>
-            <tr><td>Valor Ganho</td><td><strong>R$ 80.812,75</strong></td><td class="delta-up">+R$ 16.775,75</td></tr>
-            <tr><td>Negócios Iniciados</td><td><strong>27</strong></td><td class="delta-up">+4</td></tr>
-            <tr><td>Valor Iniciado</td><td><strong>R$ 95.487,75</strong></td><td class="delta-up">+R$ 3.319,25</td></tr>
-            <tr><td>Negócios Perdidos</td><td><strong>1</strong></td><td style="color:#94a3b8">+0</td></tr>
-            <tr><td>Ticket Médio</td><td><strong>R$ 3.232,51</strong></td><td style="color:#ef4444">-R$ 534,37</td></tr>
-            <tr><td>Ciclo Médio</td><td><strong>7 dias</strong></td><td style="color:#ef4444">+1 dia</td></tr>
-            <tr><td>Taxa Conv. (qtd)</td><td><strong>96,2%</strong></td><td class="delta-up">+1,8%</td></tr>
-            <tr><td>Taxa Conv. (valor)</td><td><strong>92,7%</strong></td><td class="delta-up">+44,2%</td></tr>
-            <tr><td>Motivo de Perda</td><td colspan="2">Desistência (100%)</td></tr>
-          </tbody>
-        </table>
+      <div class="card"><h2>Evolução Negócios Ganhos — Manutenção</h2><div class="chart-wrap-md"><canvas id="chartManutEvolucao"></canvas></div></div>
+    </div>
+    <!-- JUN/26 -->
+    <div class="venda-section" id="venda-jun" style="display:none">
+      <div class="section-title">🔩 Funil de Peças — Junho/26</div>
+      <div class="kpis" style="grid-template-columns:repeat(5,1fr)">
+        <div class="kpi green"><div class="kpi-val">17</div><div class="kpi-pct">negócios ganhos</div><div class="kpi-label">Negócios Ganhos</div></div>
+        <div class="kpi blue"><div class="kpi-val">R$ 64,0k</div><div class="kpi-pct">valor ganho</div><div class="kpi-label">Valor Ganho</div></div>
+        <div class="kpi orange"><div class="kpi-val">R$ 3.767</div><div class="kpi-pct">por negócio</div><div class="kpi-label">Ticket Médio</div></div>
+        <div class="kpi teal"><div class="kpi-val">94,4%</div><div class="kpi-pct">qtd. convertida</div><div class="kpi-label">Taxa de Conversão</div></div>
+        <div class="kpi gray"><div class="kpi-val">6 dias</div><div class="kpi-pct">ciclo médio</div><div class="kpi-label">Ciclo Médio</div></div>
+      </div>
+      <div class="charts-row-equal" style="margin-bottom:24px">
+        <div class="card" style="visibility:hidden"></div>
+        <div class="card">
+          <h2>Indicadores Peças — Jun/26</h2>
+          <table class="eq-table">
+            <thead><tr><th>Indicador</th><th>Resultado</th></tr></thead>
+            <tbody>
+              <tr><td>Negócios Ganhos</td><td><strong>17</strong></td></tr>
+              <tr><td>Valor Ganho</td><td><strong>R$ 64.037,00</strong></td></tr>
+              <tr><td>Negócios Iniciados</td><td><strong>23</strong></td></tr>
+              <tr><td>Valor Iniciado</td><td><strong>R$ 92.168,50</strong></td></tr>
+              <tr><td>Negócios Perdidos</td><td><strong>1</strong></td></tr>
+              <tr><td>Ticket Médio</td><td><strong>R$ 3.766,88</strong></td></tr>
+              <tr><td>Ciclo Médio</td><td><strong>6 dias</strong></td></tr>
+              <tr><td>Taxa Conv. (qtd)</td><td><strong>94,4%</strong></td></tr>
+              <tr><td>Taxa Conv. (valor)</td><td><strong>48,5%</strong></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="section-title" style="margin-top:4px">🔧 Funil de Manutenção — Junho/26</div>
+      <div class="kpis" style="grid-template-columns:repeat(5,1fr)">
+        <div class="kpi green"><div class="kpi-val">1</div><div class="kpi-pct">negócios ganhos</div><div class="kpi-label">Negócios Ganhos</div></div>
+        <div class="kpi teal"><div class="kpi-val">R$ 4.500</div><div class="kpi-pct">valor ganho</div><div class="kpi-label">Valor Ganho</div></div>
+        <div class="kpi orange"><div class="kpi-val">R$ 4.500</div><div class="kpi-pct">por negócio</div><div class="kpi-label">Ticket Médio</div></div>
+        <div class="kpi blue"><div class="kpi-val">50%</div><div class="kpi-pct">qtd. convertida</div><div class="kpi-label">Taxa de Conversão</div></div>
+        <div class="kpi gray"><div class="kpi-val">40 dias</div><div class="kpi-pct">ciclo médio</div><div class="kpi-label">Ciclo Médio</div></div>
+      </div>
+      <div class="charts-row-equal" style="margin-bottom:16px">
+        <div class="card" style="visibility:hidden"></div>
+        <div class="card">
+          <h2>Indicadores Manutenção — Jun/26</h2>
+          <table class="eq-table">
+            <thead><tr><th>Indicador</th><th>Resultado</th></tr></thead>
+            <tbody>
+              <tr><td>Negócios Ganhos</td><td><strong>1</strong></td></tr>
+              <tr><td>Valor Ganho</td><td><strong>R$ 4.500,00</strong></td></tr>
+              <tr><td>Negócios Iniciados</td><td><strong>4</strong></td></tr>
+              <tr><td>Valor Iniciado</td><td><strong>R$ 9.500,00</strong></td></tr>
+              <tr><td>Negócios Perdidos</td><td><strong>1</strong></td></tr>
+              <tr><td>Ticket Médio</td><td><strong>R$ 4.500,00</strong></td></tr>
+              <tr><td>Ciclo Médio</td><td><strong>40 dias</strong></td></tr>
+              <tr><td>Taxa Conv. (qtd)</td><td><strong>50%</strong></td></tr>
+              <tr><td>Taxa Conv. (valor)</td><td><strong>78,9%</strong></td></tr>
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
-    <div class="card" style="margin-bottom:24px">
-      <h2>Produtos Mais Vendidos — Peças (por valor)</h2>
-      <div class="chart-wrap-md"><canvas id="chartProdutos"></canvas></div>
-    </div>
-    <div class="section-title" style="margin-top:8px">🔧 Funil de Manutenção</div>
-    <div class="kpis" style="grid-template-columns:repeat(5,1fr)" id="manutKpis"></div>
-    <div class="charts-row-equal" style="margin-bottom:16px">
-      <div class="card"><h2>Evolução Negócios Ganhos — Manutenção</h2><div class="chart-wrap-md"><canvas id="chartManutEvolucao"></canvas></div></div>
-      <div class="card">
-        <h2>Indicadores Manutenção — Jul/26</h2>
-        <table class="eq-table">
-          <thead><tr><th>Indicador</th><th>Resultado</th><th>Variação</th></tr></thead>
-          <tbody>
-            <tr><td>Negócios Ganhos</td><td><strong>2</strong></td><td class="delta-up">+1</td></tr>
-            <tr><td>Valor Ganho</td><td><strong>R$ 3.500,00</strong></td><td style="color:#ef4444">-R$ 1.000,00</td></tr>
-            <tr><td>Negócios Iniciados</td><td><strong>2</strong></td><td style="color:#ef4444">-2</td></tr>
-            <tr><td>Valor Iniciado</td><td><strong>R$ 3.400,00</strong></td><td style="color:#ef4444">-R$ 6.100,00</td></tr>
-            <tr><td>Negócios Perdidos</td><td><strong>0</strong></td><td class="delta-up">-1</td></tr>
-            <tr><td>Ticket Médio</td><td><strong>R$ 1.750,00</strong></td><td style="color:#ef4444">-R$ 2.750,00</td></tr>
-            <tr><td>Ciclo Médio</td><td><strong>12 dias</strong></td><td class="delta-up">-28 dias</td></tr>
-            <tr><td>Taxa Conv. (qtd)</td><td><strong>100%</strong></td><td class="delta-up">+50%</td></tr>
-            <tr><td>Taxa Conv. (valor)</td><td><strong>100%</strong></td><td class="delta-up">+21,1%</td></tr>
-            <tr><td>Motivo de Perda</td><td colspan="2">Nenhuma perda</td></tr>
-          </tbody>
-        </table>
+    <!-- JUL/26 -->
+    <div class="venda-section" id="venda-jul">
+      <div class="section-title">🔩 Funil de Peças</div>
+      <div class="kpis" style="grid-template-columns:repeat(5,1fr)" id="vendasKpis"></div>
+      <div class="charts-row-equal" style="margin-bottom:24px">
+        <div class="card"><h2>Produtos Mais Vendidos — Peças (por valor)</h2><div class="chart-wrap-md"><canvas id="chartProdutos"></canvas></div></div>
+        <div class="card">
+          <h2>Indicadores Peças — Jul/26</h2>
+          <table class="eq-table">
+            <thead><tr><th>Indicador</th><th>Resultado</th><th>Variação</th></tr></thead>
+            <tbody>
+              <tr><td>Negócios Ganhos</td><td><strong>25</strong></td><td class="delta-up">+8</td></tr>
+              <tr><td>Valor Ganho</td><td><strong>R$ 80.812,75</strong></td><td class="delta-up">+R$ 16.775,75</td></tr>
+              <tr><td>Negócios Iniciados</td><td><strong>27</strong></td><td class="delta-up">+4</td></tr>
+              <tr><td>Valor Iniciado</td><td><strong>R$ 95.487,75</strong></td><td class="delta-up">+R$ 3.319,25</td></tr>
+              <tr><td>Negócios Perdidos</td><td><strong>1</strong></td><td style="color:#94a3b8">+0</td></tr>
+              <tr><td>Ticket Médio</td><td><strong>R$ 3.232,51</strong></td><td style="color:#ef4444">-R$ 534,37</td></tr>
+              <tr><td>Ciclo Médio</td><td><strong>7 dias</strong></td><td style="color:#ef4444">+1 dia</td></tr>
+              <tr><td>Taxa Conv. (qtd)</td><td><strong>96,2%</strong></td><td class="delta-up">+1,8%</td></tr>
+              <tr><td>Taxa Conv. (valor)</td><td><strong>92,7%</strong></td><td class="delta-up">+44,2%</td></tr>
+              <tr><td>Motivo de Perda</td><td colspan="2">Desistência (100%)</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="section-title" style="margin-top:4px">🔧 Funil de Manutenção</div>
+      <div class="kpis" style="grid-template-columns:repeat(5,1fr)" id="manutKpis"></div>
+      <div class="charts-row-equal" style="margin-bottom:16px">
+        <div class="card" style="visibility:hidden"></div>
+        <div class="card">
+          <h2>Indicadores Manutenção — Jul/26</h2>
+          <table class="eq-table">
+            <thead><tr><th>Indicador</th><th>Resultado</th><th>Variação</th></tr></thead>
+            <tbody>
+              <tr><td>Negócios Ganhos</td><td><strong>2</strong></td><td class="delta-up">+1</td></tr>
+              <tr><td>Valor Ganho</td><td><strong>R$ 3.500,00</strong></td><td style="color:#ef4444">-R$ 1.000,00</td></tr>
+              <tr><td>Negócios Iniciados</td><td><strong>2</strong></td><td style="color:#ef4444">-2</td></tr>
+              <tr><td>Valor Iniciado</td><td><strong>R$ 3.400,00</strong></td><td style="color:#ef4444">-R$ 6.100,00</td></tr>
+              <tr><td>Negócios Perdidos</td><td><strong>0</strong></td><td class="delta-up">-1</td></tr>
+              <tr><td>Ticket Médio</td><td><strong>R$ 1.750,00</strong></td><td style="color:#ef4444">-R$ 2.750,00</td></tr>
+              <tr><td>Ciclo Médio</td><td><strong>12 dias</strong></td><td class="delta-up">-28 dias</td></tr>
+              <tr><td>Taxa Conv. (qtd)</td><td><strong>100%</strong></td><td class="delta-up">+50%</td></tr>
+              <tr><td>Taxa Conv. (valor)</td><td><strong>100%</strong></td><td class="delta-up">+21,1%</td></tr>
+              <tr><td>Motivo de Perda</td><td colspan="2">Nenhuma perda</td></tr>
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
   </div>
@@ -319,7 +385,70 @@
         </table>
       </div>
     </div>
-    <div class="charts-row-3" style="margin-top:16px">
+    <div style="margin-top:16px">
+      <div class="month-tabs" style="margin-bottom:16px">
+        <div class="month-tab" onclick="showFat('janjun',this)">Jan–Jun/26</div>
+        <div class="month-tab active" onclick="showFat('jul',this)">Jul/26</div>
+      </div>
+      <!-- Jan-Jun detalhe -->
+      <div class="fat-section" id="fat-janjun" style="display:none">
+        <div class="charts-row-3">
+          <div class="card" style="grid-column:span 1">
+            <h2>Top 10 Clientes — Jan–Jun/26</h2>
+            <table class="eq-table">
+              <thead><tr><th>#</th><th>Cliente</th><th style="text-align:right">Total</th></tr></thead>
+              <tbody>
+                <tr><td>1</td><td>Cond. Res. Leonardo Residence</td><td style="text-align:right">R$ 44.465</td></tr>
+                <tr><td>2</td><td>Residencial Placido XXV</td><td style="text-align:right">R$ 37.925</td></tr>
+                <tr><td>3</td><td>Ed. Residencial Royale</td><td style="text-align:right">R$ 31.920</td></tr>
+                <tr><td>4</td><td>Residencial Bergamo</td><td style="text-align:right">R$ 30.977</td></tr>
+                <tr><td>5</td><td>Ricardo Marques</td><td style="text-align:right">R$ 28.789</td></tr>
+                <tr><td>6</td><td>Ed. Residencial Pompeia</td><td style="text-align:right">R$ 28.213</td></tr>
+                <tr><td>7</td><td>Residencial Manaca</td><td style="text-align:right">R$ 20.185</td></tr>
+                <tr><td>8</td><td>Ed. Residencial Palladium</td><td style="text-align:right">R$ 19.726</td></tr>
+                <tr><td>9</td><td>Cond. Flat Service Priority</td><td style="text-align:right">R$ 13.143</td></tr>
+                <tr><td>10</td><td>Residencial Mônaco</td><td style="text-align:right">R$ 10.930</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="card">
+            <h2>Top Peças por Quantidade — Jan–Jun/26</h2>
+            <table class="eq-table">
+              <thead><tr><th>#</th><th>Peça</th><th style="text-align:right">Qtde</th></tr></thead>
+              <tbody>
+                <tr><td>1</td><td>Cabo Aço 1/2 8x19</td><td style="text-align:right">764</td></tr>
+                <tr><td>2</td><td>Roldana 50mm</td><td style="text-align:right">277</td></tr>
+                <tr><td>3</td><td>Óleo p/ Máquina de Tração</td><td style="text-align:right">240</td></tr>
+                <tr><td>4</td><td>Cabo Aço Polido 5/16</td><td style="text-align:right">232</td></tr>
+                <tr><td>5</td><td>Cabo Aço Polido 3/8</td><td style="text-align:right">224</td></tr>
+                <tr><td>6</td><td>Corrediça de Porta</td><td style="text-align:right">173</td></tr>
+                <tr><td>7</td><td>Luminária LED 5W Spot</td><td style="text-align:right">170</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="card">
+            <h2>Top Peças por Faturamento — Jan–Jun/26</h2>
+            <table class="eq-table">
+              <thead><tr><th>#</th><th>Peça</th><th style="text-align:right">Total</th></tr></thead>
+              <tbody>
+                <tr><td>1</td><td>Cabo Aço 1/2 8x19 (1000m)</td><td style="text-align:right">R$ 48.820</td></tr>
+                <tr><td>2</td><td>Operador de Porta 800x2100</td><td style="text-align:right">R$ 40.850</td></tr>
+                <tr><td>3</td><td>Roldana 50mm Montada</td><td style="text-align:right">R$ 30.130</td></tr>
+                <tr><td>4</td><td>Inversor de Freq. 20HP</td><td style="text-align:right">R$ 27.500</td></tr>
+                <tr><td>5</td><td>Óleo p/ Máquina de Tração</td><td style="text-align:right">R$ 25.925</td></tr>
+                <tr><td>6</td><td>Inversor de Freq. 15HP</td><td style="text-align:right">R$ 22.500</td></tr>
+                <tr><td>7</td><td>Barreira Infravermelha Cabina</td><td style="text-align:right">R$ 21.130</td></tr>
+                <tr><td>8</td><td>Placa Eletr MC24 P-01</td><td style="text-align:right">R$ 20.400</td></tr>
+                <tr><td>9</td><td>Rampa Móvel</td><td style="text-align:right">R$ 16.100</td></tr>
+                <tr><td>10</td><td>Luminária LED 5W Spot</td><td style="text-align:right">R$ 12.723</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+      <!-- Jul detalhe -->
+      <div class="fat-section" id="fat-jul">
+      <div class="charts-row-3">
       <div class="card" style="grid-column:span 1">
         <h2>Top Clientes — Julho/26</h2>
         <table class="eq-table">
@@ -371,7 +500,9 @@
           </tbody>
         </table>
       </div>
-    </div>
+      </div><!-- /charts-row-3 jul -->
+      </div><!-- /fat-section jul -->
+    </div><!-- /outer div faturamento detail -->
   </div>
 
   <!-- ═══ RH ═══ -->
@@ -607,13 +738,25 @@ function showTab(id,el){
 let prodChartsInit={};
 function showProd(mes,el){
   document.querySelectorAll('.prod-section').forEach(s=>s.style.display='none');
-  document.querySelectorAll('.month-tab').forEach(t=>t.classList.remove('active'));
+  el.closest('.month-tabs').querySelectorAll('.month-tab').forEach(t=>t.classList.remove('active'));
   document.getElementById('prod-'+mes).style.display='block';
   el.classList.add('active');
   if(!prodChartsInit[mes]){
     initProdCharts(mes);
     prodChartsInit[mes]=true;
   }
+}
+function showVendas(mes,el){
+  document.querySelectorAll('.venda-section').forEach(s=>s.style.display='none');
+  el.closest('.month-tabs').querySelectorAll('.month-tab').forEach(t=>t.classList.remove('active'));
+  document.getElementById('venda-'+mes).style.display='block';
+  el.classList.add('active');
+}
+function showFat(mes,el){
+  document.querySelectorAll('.fat-section').forEach(s=>s.style.display='none');
+  el.closest('.month-tabs').querySelectorAll('.month-tab').forEach(t=>t.classList.remove('active'));
+  document.getElementById('fat-'+mes).style.display='block';
+  el.classList.add('active');
 }
 
 const prodDataAll={
