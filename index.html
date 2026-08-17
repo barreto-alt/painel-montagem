@@ -43,12 +43,13 @@
   .rh-kpi.green{border-color:#22c55e}.rh-kpi.blue{border-color:#3b82f6}.rh-kpi.orange{border-color:#f59e0b}.rh-kpi.red{border-color:#ef4444}.rh-kpi.teal{border-color:#0d9488}.rh-kpi.purple{border-color:#8b5cf6}
   .rh-kpi-val{font-size:1.8rem;font-weight:800}
   .rh-kpi-label{font-size:.78rem;text-transform:uppercase;letter-spacing:.4px;color:#64748b;margin-top:4px}
-  .eq-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:24px}
+  .eq-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;margin-bottom:24px}
   .eq-table{width:100%;border-collapse:collapse;font-size:.88rem}
   .eq-table th{background:#f8fafc;text-align:left;padding:10px 14px;font-weight:600;color:#475569;font-size:.78rem;text-transform:uppercase;letter-spacing:.4px;border-bottom:2px solid #e2e8f0}
   .eq-table td{padding:10px 14px;border-bottom:1px solid #f1f5f9}
   .eq-table tr:last-child td{font-weight:700;background:#f0fdf4}
   .delta-up{color:#22c55e;font-weight:700}
+  .delta-down{color:#ef4444;font-weight:700}
   .prod-badge{display:inline-block;padding:4px 12px;border-radius:20px;font-size:.75rem;font-weight:700}
   .prod-red{background:#fee2e2;color:#dc2626}
   .prod-yellow{background:#fef9c3;color:#854d0e}
@@ -698,10 +699,74 @@
           </tbody>
         </table>
       </div>
+      <div class="card">
+        <h2>Liftflex – Julho/2026</h2>
+        <table class="eq-table">
+          <thead><tr><th>Categoria</th><th>Quantidade</th><th>Δ Jun</th></tr></thead>
+          <tbody>
+            <tr><td>Obra</td><td>95</td><td class="delta-up">+6</td></tr>
+            <tr><td>Diversos (sem contrato)</td><td>11</td><td style="color:#94a3b8">—</td></tr>
+            <tr><td>Equipamentos com Contrato</td><td>404</td><td class="delta-down">-5</td></tr>
+            <tr><td>Em Negociação</td><td>—</td><td style="color:#94a3b8">—</td></tr>
+            <tr><td><strong>Total LiftFlex</strong></td><td><strong>510</strong></td><td class="delta-up">+1</td></tr>
+          </tbody>
+        </table>
+        <p style="font-size:.75rem;color:#94a3b8;margin-top:8px">Atualização: 24/07/2026</p>
+      </div>
     </div>
     <div class="card">
       <h2>Evolução de Equipamentos Ativos</h2>
       <div class="chart-wrap-tall"><canvas id="chartEq"></canvas></div>
+    </div>
+    <div class="card" style="margin-top:0">
+      <h2>Obras em Andamento – Julho/2026 <span style="font-size:.8rem;font-weight:400;color:#94a3b8">(35 obras · 95 equipamentos)</span></h2>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:12px">
+        <table class="eq-table">
+          <thead><tr><th>Obra</th><th style="text-align:right">Equip.</th></tr></thead>
+          <tbody>
+            <tr><td>Dante Frizon</td><td style="text-align:right">5</td></tr>
+            <tr><td>Padaria Dom Levi</td><td style="text-align:right">5</td></tr>
+            <tr><td>Fatima II</td><td style="text-align:right">4</td></tr>
+            <tr><td>Francisco Camargo</td><td style="text-align:right">4</td></tr>
+            <tr><td>Jardim do Forte</td><td style="text-align:right">4</td></tr>
+            <tr><td>Platinum</td><td style="text-align:right">4</td></tr>
+            <tr><td>Torres</td><td style="text-align:right">4</td></tr>
+            <tr><td>Bella Collina</td><td style="text-align:right">3</td></tr>
+            <tr><td>Bellagio</td><td style="text-align:right">3</td></tr>
+            <tr><td>Coliseu</td><td style="text-align:right">3</td></tr>
+            <tr><td>Napoli</td><td style="text-align:right">3</td></tr>
+            <tr><td>Plácido Carvalho</td><td style="text-align:right">3</td></tr>
+            <tr><td>Pompeia III</td><td style="text-align:right">3</td></tr>
+            <tr><td>Portal da Barra</td><td style="text-align:right">3</td></tr>
+            <tr><td>Porto Marina</td><td style="text-align:right">3</td></tr>
+            <tr><td>Raimundo Gomes</td><td style="text-align:right">3</td></tr>
+            <tr><td>Seven</td><td style="text-align:right">3</td></tr>
+            <tr><td>Termak (Câm. Mun. Santos)</td><td style="text-align:right">3</td></tr>
+          </tbody>
+        </table>
+        <table class="eq-table">
+          <thead><tr><th>Obra</th><th style="text-align:right">Equip.</th></tr></thead>
+          <tbody>
+            <tr><td>Turim</td><td style="text-align:right">3</td></tr>
+            <tr><td>Unique Praia Grande</td><td style="text-align:right">3</td></tr>
+            <tr><td>Vision Fortcon Residence</td><td style="text-align:right">3</td></tr>
+            <tr><td>Angelina</td><td style="text-align:right">2</td></tr>
+            <tr><td>Jardins do Mathilde</td><td style="text-align:right">2</td></tr>
+            <tr><td>Magnum</td><td style="text-align:right">2</td></tr>
+            <tr><td>Maria Fernandes Dias</td><td style="text-align:right">2</td></tr>
+            <tr><td>Milano</td><td style="text-align:right">2</td></tr>
+            <tr><td>Pedro</td><td style="text-align:right">2</td></tr>
+            <tr><td>Pq. das Araucárias</td><td style="text-align:right">2</td></tr>
+            <tr><td>Villa Pitangueiras</td><td style="text-align:right">2</td></tr>
+            <tr><td>Yaskawa</td><td style="text-align:right">2</td></tr>
+            <tr><td>Abbud</td><td style="text-align:right">1</td></tr>
+            <tr><td>Amiguinho</td><td style="text-align:right">1</td></tr>
+            <tr><td>Centro Esp. João Cabete</td><td style="text-align:right">1</td></tr>
+            <tr><td>Farol Mania</td><td style="text-align:right">1</td></tr>
+            <tr><td>Valência</td><td style="text-align:right">1</td></tr>
+          </tbody>
+        </table>
+      </div>
     </div>
   </div>
 </div>
@@ -932,14 +997,14 @@ document.getElementById('rhKpis').innerHTML=`
 
 // ══ EQUIPAMENTOS ══
 document.getElementById('eqKpis').innerHTML=`
-  <div class="kpi blue"><div class="kpi-val">509</div><div class="kpi-pct">+16 vs Maio</div><div class="kpi-label">Total LiftFlex (Jun)</div></div>
-  <div class="kpi green"><div class="kpi-val">409</div><div class="kpi-pct">+10 vs Maio</div><div class="kpi-label">Com Contrato (Jun)</div></div>
-  <div class="kpi orange"><div class="kpi-val">89</div><div class="kpi-pct">+9 vs Maio</div><div class="kpi-label">Em Obra (Jun)</div></div>
-  <div class="kpi gray"><div class="kpi-val">11</div><div class="kpi-pct">estável</div><div class="kpi-label">Sem Contrato (Jun)</div></div>
+  <div class="kpi blue"><div class="kpi-val">510</div><div class="kpi-pct">+1 vs Junho</div><div class="kpi-label">Total LiftFlex (Jul)</div></div>
+  <div class="kpi green"><div class="kpi-val">404</div><div class="kpi-pct">-5 vs Junho</div><div class="kpi-label">Com Contrato (Jul)</div></div>
+  <div class="kpi orange"><div class="kpi-val">95</div><div class="kpi-pct">+6 vs Junho</div><div class="kpi-label">Em Obra (Jul)</div></div>
+  <div class="kpi gray"><div class="kpi-val">11</div><div class="kpi-pct">estável</div><div class="kpi-label">Sem Contrato (Jul)</div></div>
 `;
 new Chart(document.getElementById('chartEq'),{
   type:'bar',
-  data:{labels:['Maio','Junho'],datasets:[{label:'Com Contrato',data:[399,409],backgroundColor:'#22c55e',borderRadius:4,borderWidth:0},{label:'Em Obra',data:[80,89],backgroundColor:'#3b82f6',borderRadius:4,borderWidth:0},{label:'Sem Contrato',data:[11,11],backgroundColor:'#f59e0b',borderRadius:4,borderWidth:0},{label:'Em Negociação',data:[3,0],backgroundColor:'#94a3b8',borderRadius:4,borderWidth:0}]},
+  data:{labels:['Maio','Junho','Julho'],datasets:[{label:'Com Contrato',data:[399,409,404],backgroundColor:'#22c55e',borderRadius:4,borderWidth:0},{label:'Em Obra',data:[80,89,95],backgroundColor:'#3b82f6',borderRadius:4,borderWidth:0},{label:'Sem Contrato',data:[11,11,11],backgroundColor:'#f59e0b',borderRadius:4,borderWidth:0},{label:'Em Negociação',data:[3,0,0],backgroundColor:'#94a3b8',borderRadius:4,borderWidth:0}]},
   options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'bottom',labels:{font:{size:11},boxWidth:12,padding:8}}},scales:{x:{stacked:true},y:{stacked:true}}}
 });
 
