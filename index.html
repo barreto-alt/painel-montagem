@@ -101,6 +101,7 @@
     <div class="tab" onclick="showTab('producao',this)">Produção</div>
     <div class="tab" onclick="showTab('vendas',this)">Vendas</div>
     <div class="tab" onclick="showTab('faturamento',this)">Faturamento</div>
+    <div class="tab" onclick="showTab('vendasxfat',this)">Vendas × Fat.</div>
     <div class="tab" onclick="showTab('rh',this)">RH</div>
     <div class="tab" onclick="showTab('seguranca',this)">Segurança</div>
     <div class="tab" onclick="showTab('equipamentos',this)">Equipamentos</div>
@@ -608,6 +609,131 @@
     </div>
   </div>
 
+  <!-- ═══ VENDAS × FATURAMENTO ═══ -->
+  <div id="vendasxfat" class="section" style="display:none">
+    <div class="kpis" style="grid-template-columns:repeat(4,1fr);margin-bottom:20px">
+      <div class="kpi blue"><div class="kpi-val">R$ 670k</div><div class="kpi-pct">Fev–Ago/26</div><div class="kpi-label">Total Vendido (Peças + Man.)</div></div>
+      <div class="kpi green"><div class="kpi-val">R$ 702k</div><div class="kpi-pct">Jan–Ago/26</div><div class="kpi-label">Total Faturado (Peças + Serv.)</div></div>
+      <div class="kpi orange"><div class="kpi-val">+R$ 32k</div><div class="kpi-pct">saldo acumulado</div><div class="kpi-label">Faturado &gt; Vendido</div></div>
+      <div class="kpi gray"><div class="kpi-val">~30 dias</div><div class="kpi-pct">estimativa</div><div class="kpi-label">Lag médio Venda → Fat.</div></div>
+    </div>
+
+    <div class="charts-row-2">
+      <div class="card">
+        <h2>Vendido vs Faturado — Fev–Ago/2026</h2>
+        <div class="chart-wrap-tall"><canvas id="chartVxF"></canvas></div>
+      </div>
+      <div class="card">
+        <h2>Diferença Mensal (Faturado − Vendido)</h2>
+        <div class="chart-wrap-tall"><canvas id="chartDelta"></canvas></div>
+      </div>
+    </div>
+
+    <div class="card" style="margin-top:16px">
+      <h2>Tabela Comparativa — Mensal 2026</h2>
+      <table class="eq-table" style="margin-top:8px">
+        <thead>
+          <tr>
+            <th>Mês</th>
+            <th style="text-align:right">Vendido (Peças)</th>
+            <th style="text-align:right">Vendido (Man.)</th>
+            <th style="text-align:right">Total Vendido</th>
+            <th style="text-align:right">Faturado (Peças)</th>
+            <th style="text-align:right">Faturado (Serv.)</th>
+            <th style="text-align:right">Total Faturado</th>
+            <th style="text-align:right">Δ (Fat.−Vend.)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Jan/26</td>
+            <td style="text-align:right;color:#94a3b8">—</td>
+            <td style="text-align:right;color:#94a3b8">—</td>
+            <td style="text-align:right;color:#94a3b8">—</td>
+            <td style="text-align:right">R$ 78.288</td>
+            <td style="text-align:right;color:#94a3b8">—</td>
+            <td style="text-align:right"><strong>R$ 78.288</strong></td>
+            <td style="text-align:right;color:#94a3b8">—</td>
+          </tr>
+          <tr>
+            <td>Fev/26</td>
+            <td style="text-align:right">R$ 100.000</td>
+            <td style="text-align:right;color:#94a3b8">—</td>
+            <td style="text-align:right">R$ 100.000</td>
+            <td style="text-align:right">R$ 117.788</td>
+            <td style="text-align:right;color:#94a3b8">—</td>
+            <td style="text-align:right"><strong>R$ 117.788</strong></td>
+            <td style="text-align:right;color:#22c55e">+R$ 17.788</td>
+          </tr>
+          <tr>
+            <td>Mar/26</td>
+            <td style="text-align:right">R$ 95.000</td>
+            <td style="text-align:right;color:#94a3b8">—</td>
+            <td style="text-align:right">R$ 95.000</td>
+            <td style="text-align:right">R$ 90.173</td>
+            <td style="text-align:right;color:#94a3b8">—</td>
+            <td style="text-align:right"><strong>R$ 90.173</strong></td>
+            <td style="text-align:right;color:#ef4444">−R$ 4.827</td>
+          </tr>
+          <tr>
+            <td>Abr/26</td>
+            <td style="text-align:right">R$ 100.000</td>
+            <td style="text-align:right;color:#94a3b8">—</td>
+            <td style="text-align:right">R$ 100.000</td>
+            <td style="text-align:right">R$ 107.104</td>
+            <td style="text-align:right;color:#94a3b8">—</td>
+            <td style="text-align:right"><strong>R$ 107.104</strong></td>
+            <td style="text-align:right;color:#22c55e">+R$ 7.104</td>
+          </tr>
+          <tr>
+            <td>Mai/26</td>
+            <td style="text-align:right">R$ 185.000</td>
+            <td style="text-align:right">R$ 4.500</td>
+            <td style="text-align:right">R$ 189.500</td>
+            <td style="text-align:right">R$ 54.914</td>
+            <td style="text-align:right;color:#94a3b8">—</td>
+            <td style="text-align:right"><strong>R$ 54.914</strong></td>
+            <td style="text-align:right;color:#ef4444">−R$ 134.586</td>
+          </tr>
+          <tr>
+            <td>Jun/26</td>
+            <td style="text-align:right">R$ 64.037</td>
+            <td style="text-align:right">R$ 4.500</td>
+            <td style="text-align:right">R$ 68.537</td>
+            <td style="text-align:right">R$ 109.177</td>
+            <td style="text-align:right">R$ 39.378</td>
+            <td style="text-align:right"><strong>R$ 148.555</strong></td>
+            <td style="text-align:right;color:#22c55e">+R$ 80.018</td>
+          </tr>
+          <tr>
+            <td>Jul/26</td>
+            <td style="text-align:right">R$ 80.813</td>
+            <td style="text-align:right">R$ 3.500</td>
+            <td style="text-align:right">R$ 84.313</td>
+            <td style="text-align:right">R$ 88.488</td>
+            <td style="text-align:right">R$ 8.788</td>
+            <td style="text-align:right"><strong>R$ 97.276</strong></td>
+            <td style="text-align:right;color:#22c55e">+R$ 12.963</td>
+          </tr>
+          <tr>
+            <td>Ago/26</td>
+            <td style="text-align:right">R$ 70.182</td>
+            <td style="text-align:right">R$ 5.900</td>
+            <td style="text-align:right">R$ 76.082</td>
+            <td style="text-align:right">R$ 55.820</td>
+            <td style="text-align:right">R$ 1.729</td>
+            <td style="text-align:right"><strong>R$ 57.549</strong></td>
+            <td style="text-align:right;color:#ef4444">−R$ 18.533</td>
+          </tr>
+        </tbody>
+      </table>
+      <div style="margin-top:12px;font-size:.82rem;color:#64748b;line-height:1.7;background:#f8fafc;border-radius:8px;padding:12px">
+        ⚠️ <strong>Atenção:</strong> O cruzamento Vendido × Faturado não é uma comparação direta — há um <strong>lag natural</strong> entre a venda (negócio ganho) e o faturamento (emissão da NF). Meses com alto volume vendido tendem a gerar faturamento maior nos meses seguintes. <br>
+        Maio/26 ilustra isso: R$ 189k vendido → faturamento elevado em Junho/26 (R$ 149k, melhor mês do ano).
+      </div>
+    </div>
+  </div>
+
   <!-- ═══ FATURAMENTO ═══ -->
   <div id="faturamento" class="section">
     <div class="kpis" style="grid-template-columns:repeat(4,1fr)" id="fatKpis"></div>
@@ -1080,10 +1206,10 @@
       <div class="chart-wrap-tall"><canvas id="chartEq"></canvas></div>
     </div>
     <div class="card" style="margin-top:0">
-      <h2>Obras em Andamento – Agosto/2026 <span style="font-size:.8rem;font-weight:400;color:#94a3b8">(36 obras · 96 equipamentos)</span></h2>
+      <h2>Manutenção – Agosto/2026 <span style="font-size:.8rem;font-weight:400;color:#94a3b8">(36 obras · 96 equipamentos)</span></h2>
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:12px">
         <table class="eq-table">
-          <thead><tr><th>Obra</th><th style="text-align:right">Equip.</th></tr></thead>
+          <thead><tr><th>Aguardando</th><th style="text-align:right">Equip.</th></tr></thead>
           <tbody>
             <tr><td>Dante Frizon</td><td style="text-align:right">5</td></tr>
             <tr><td>Padaria Dom Levi</td><td style="text-align:right">5</td></tr>
@@ -1106,7 +1232,7 @@
           </tbody>
         </table>
         <table class="eq-table">
-          <thead><tr><th>Obra</th><th style="text-align:right">Equip.</th></tr></thead>
+          <thead><tr><th>Aguardando</th><th style="text-align:right">Equip.</th></tr></thead>
           <tbody>
             <tr><td>Turim</td><td style="text-align:right">3</td></tr>
             <tr><td>Unique Praia Grande</td><td style="text-align:right">3</td></tr>
@@ -1391,6 +1517,58 @@ new Chart(document.getElementById('chartEq'),{
 });
 
 document.getElementById('updateTime').textContent='Atualizado em: '+new Date().toLocaleDateString('pt-BR');
+
+// ══ VENDAS × FATURAMENTO ══
+const vxfLabels=['Fev','Mar','Abr','Mai','Jun','Jul','Ago'];
+const vxfVendido=[100000,95000,100000,189500,68537,84313,76082];
+const vxfFaturado=[117788,90173,107104,54914,148555,97276,57549];
+const vxfDelta=vxfFaturado.map((f,i)=>f-vxfVendido[i]);
+
+new Chart(document.getElementById('chartVxF'),{
+  type:'bar',
+  data:{
+    labels:vxfLabels,
+    datasets:[
+      {label:'Vendido',data:vxfVendido,backgroundColor:'#3b82f6',borderRadius:4,borderWidth:0},
+      {label:'Faturado',data:vxfFaturado,backgroundColor:'#22c55e',borderRadius:4,borderWidth:0}
+    ]
+  },
+  options:{
+    responsive:true,maintainAspectRatio:false,
+    plugins:{
+      legend:{position:'bottom',labels:{font:{size:11},boxWidth:12,padding:8}},
+      tooltip:{callbacks:{label:ctx=>ctx.dataset.label+': R$ '+ctx.raw.toLocaleString('pt-BR')}}
+    },
+    scales:{
+      x:{grid:{display:false}},
+      y:{ticks:{callback:v=>'R$ '+(v/1000).toFixed(0)+'k'},grid:{color:'#f1f5f9'}}
+    }
+  }
+});
+
+new Chart(document.getElementById('chartDelta'),{
+  type:'bar',
+  data:{
+    labels:vxfLabels,
+    datasets:[{
+      label:'Δ Faturado − Vendido',
+      data:vxfDelta,
+      backgroundColor:vxfDelta.map(d=>d>=0?'#22c55e':'#ef4444'),
+      borderRadius:4,borderWidth:0
+    }]
+  },
+  options:{
+    responsive:true,maintainAspectRatio:false,
+    plugins:{
+      legend:{display:false},
+      tooltip:{callbacks:{label:ctx=>'Δ: R$ '+ctx.raw.toLocaleString('pt-BR')}}
+    },
+    scales:{
+      x:{grid:{display:false}},
+      y:{ticks:{callback:v=>'R$ '+(v/1000).toFixed(0)+'k'},grid:{color:'#f1f5f9'}}
+    }
+  }
+});
 </script>
 </body>
 </html>
