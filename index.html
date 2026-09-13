@@ -134,13 +134,14 @@
   <!-- ═══ PRODUÇÃO ═══ -->
   <div id="producao" class="section">
     <div class="month-tabs">
-      <div class="month-tab active" onclick="showProd('mai',this)">Maio/26</div>
+      <div class="month-tab" onclick="showProd('mai',this)">Maio/26</div>
       <div class="month-tab" onclick="showProd('jun',this)">Junho/26</div>
       <div class="month-tab" onclick="showProd('jul',this)">Julho/26</div>
+      <div class="month-tab active" onclick="showProd('ago',this)">Ago/26</div>
     </div>
 
     <!-- MAI -->
-    <div id="prod-mai" class="prod-section">
+    <div id="prod-mai" class="prod-section" style="display:none">
       <div class="kpis" style="grid-template-columns:repeat(5,1fr)" id="prodKpisMai"></div>
       <div class="charts-row-equal">
         <div class="card"><h2>Planejado vs Realizado — Maio</h2><div class="chart-wrap-md"><canvas id="chartPlanMai"></canvas></div></div>
@@ -210,6 +211,7 @@
 
     <!-- JUL -->
     <div id="prod-jul" class="prod-section" style="display:none">
+
       <div class="kpis" style="grid-template-columns:repeat(5,1fr)" id="prodKpisJul"></div>
       <div class="charts-row-equal">
         <div class="card"><h2>Planejado vs Realizado — Julho</h2><div class="chart-wrap-md"><canvas id="chartPlanJul"></canvas></div></div>
@@ -242,13 +244,206 @@
         </div>
       </div>
     </div>
+
+    <!-- AGO -->
+    <div id="prod-ago" class="prod-section">
+      <div class="kpis" style="grid-template-columns:repeat(5,1fr)" id="prodKpisAgo"></div>
+      <div class="charts-row-equal">
+        <div class="card"><h2>Planejado vs Realizado — Agosto</h2><div class="chart-wrap-md"><canvas id="chartPlanAgo"></canvas></div></div>
+        <div class="card"><h2>% Execução por Produto — Agosto</h2><div class="chart-wrap-md"><canvas id="chartExecAgo"></canvas></div></div>
+      </div>
+      <div class="charts-row-2" style="margin-top:16px">
+        <div class="card">
+          <h2>Detalhamento — Agosto/26</h2>
+          <table class="eq-table">
+            <thead><tr><th>Produto</th><th style="text-align:center">Plan.</th><th style="text-align:center">Exec.</th><th style="text-align:center">%</th><th>Situação</th></tr></thead>
+            <tbody id="planTableAgo"></tbody>
+          </table>
+          <div style="margin-top:12px;font-size:.75rem;color:#64748b;line-height:1.8">
+            <span style="color:#dc2626">■</span> 0–49%: Urgente &nbsp;
+            <span style="color:#854d0e">■</span> 50–89%: Atenção &nbsp;
+            <span style="color:#16a34a">■</span> 90–100%: Bom trabalho &nbsp;
+            <span style="color:#2563eb">■</span> Acima do plano
+          </div>
+        </div>
+        <div class="card">
+          <h2>Produção de Cabinas — Agosto (h)</h2>
+          <table class="eq-table">
+            <thead><tr><th>Obra</th><th style="text-align:center">Teto</th><th style="text-align:center">Assoalho</th><th style="text-align:center">Cabina</th><th style="text-align:center">Total</th></tr></thead>
+            <tbody>
+              <tr><td>Res. "Torres" – BL "B" Social</td><td style="text-align:center">5,00</td><td style="text-align:center">6,00</td><td style="text-align:center">7,50</td><td style="text-align:center"><strong>18,50</strong></td></tr>
+              <tr><td>Res. "Valência" – Social</td><td style="text-align:center">8,00</td><td style="text-align:center">10,00</td><td style="text-align:center">16,00</td><td style="text-align:center"><strong>34,00</strong></td></tr>
+              <tr><td>Res. "Turim" – Serviço</td><td style="text-align:center">8,00</td><td style="text-align:center">8,00</td><td style="text-align:center">13,00</td><td style="text-align:center"><strong>29,00</strong></td></tr>
+              <tr><td>Res. "Coliseu" – Social</td><td style="text-align:center">7,00</td><td style="text-align:center">7,50</td><td style="text-align:center">16,50</td><td style="text-align:center"><strong>31,00</strong></td></tr>
+            </tbody>
+          </table>
+          <div style="margin-top:10px;font-size:.8rem;color:#64748b"><strong>Tempo médio:</strong> 28h07min</div>
+        </div>
+      </div>
+      <div class="card" style="margin-top:16px">
+        <h2>Histórico — Planejado vs Realizado (Maio–Agosto/2026)</h2>
+        <table class="eq-table" style="margin-top:8px">
+          <thead>
+            <tr>
+              <th>Produto</th>
+              <th style="text-align:center">Mai Plan.</th><th style="text-align:center">Mai Exec.</th>
+              <th style="text-align:center">Jun Plan.</th><th style="text-align:center">Jun Exec.</th>
+              <th style="text-align:center">Jul Plan.</th><th style="text-align:center">Jul Exec.</th>
+              <th style="text-align:center">Ago Plan.</th><th style="text-align:center">Ago Exec.</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>Barras Porta Central</td><td style="text-align:center">150</td><td style="text-align:center">100</td><td style="text-align:center">100</td><td style="text-align:center">50</td><td style="text-align:center">200</td><td style="text-align:center">150</td><td style="text-align:center">100</td><td style="text-align:center"><strong>150</strong></td></tr>
+            <tr><td>Portas de Pavimento</td><td style="text-align:center">100</td><td style="text-align:center">89</td><td style="text-align:center">200</td><td style="text-align:center">100</td><td style="text-align:center">100</td><td style="text-align:center">111</td><td style="text-align:center">100</td><td style="text-align:center"><strong>80</strong></td></tr>
+            <tr><td>Cabinas</td><td style="text-align:center">7</td><td style="text-align:center">3</td><td style="text-align:center">6</td><td style="text-align:center">3</td><td style="text-align:center">8</td><td style="text-align:center">4</td><td style="text-align:center">6</td><td style="text-align:center"><strong>4</strong></td></tr>
+            <tr><td>Batentes Centrais</td><td style="text-align:center">100</td><td style="text-align:center">100</td><td style="text-align:center">127</td><td style="text-align:center">103</td><td style="text-align:center">70</td><td style="text-align:center">0</td><td style="text-align:center">97</td><td style="text-align:center"><strong>161</strong></td></tr>
+            <tr><td>Ferragens de Cabinas</td><td style="text-align:center">3</td><td style="text-align:center">3</td><td style="text-align:center">5</td><td style="text-align:center">5</td><td style="text-align:center">6</td><td style="text-align:center">5</td><td style="text-align:center">1</td><td style="text-align:center"><strong>1</strong></td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="card" style="margin-top:16px">
+        <h2>Absenteísmo — Equipe de Produção (Jun–Set/2026)</h2>
+        <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:16px;margin-top:8px">
+          <div style="background:#fff7ed;border-radius:10px;padding:14px;text-align:center">
+            <div style="font-size:1.8rem;font-weight:800;color:#c2410c">20</div>
+            <div style="font-size:.78rem;color:#64748b;text-transform:uppercase;margin-top:4px">Junho/26</div>
+          </div>
+          <div style="background:#fee2e2;border-radius:10px;padding:14px;text-align:center">
+            <div style="font-size:1.8rem;font-weight:800;color:#dc2626">20</div>
+            <div style="font-size:.78rem;color:#64748b;text-transform:uppercase;margin-top:4px">Julho/26 ▲ pico</div>
+          </div>
+          <div style="background:#f0fdf4;border-radius:10px;padding:14px;text-align:center">
+            <div style="font-size:1.8rem;font-weight:800;color:#15803d">13</div>
+            <div style="font-size:.78rem;color:#64748b;text-transform:uppercase;margin-top:4px">Agosto/26 ▼ redução</div>
+          </div>
+          <div style="background:#f8fafc;border-radius:10px;padding:14px;text-align:center">
+            <div style="font-size:1.8rem;font-weight:800;color:#94a3b8">1</div>
+            <div style="font-size:.78rem;color:#64748b;text-transform:uppercase;margin-top:4px">Setembro/26 (parcial)</div>
+          </div>
+        </div>
+        <div style="margin-bottom:16px"><canvas id="chartAbsent" style="max-height:150px"></canvas></div>
+
+        <!-- ALERTA DOCUMENTAÇÃO -->
+        <div style="background:#fef2f2;border:1px solid #fecaca;border-radius:8px;padding:10px 14px;margin-bottom:16px;font-size:.83rem;color:#dc2626">
+          ⚠️ <strong>Atenção — Documentação:</strong> A grande maioria das ocorrências não possui documento comprobatório. Recomenda-se exigir apresentação formal para ausências justificadas.
+        </div>
+
+        <!-- RECORRENTES -->
+        <div style="margin-bottom:16px">
+          <div style="font-weight:700;font-size:.85rem;color:#475569;margin-bottom:8px">Colaboradores com maior recorrência (Jun–Ago/26)</div>
+          <table class="eq-table" style="font-size:.82rem">
+            <thead><tr><th>Colaborador</th><th style="text-align:center">Jun</th><th style="text-align:center">Jul</th><th style="text-align:center">Ago</th><th style="text-align:center">Total</th></tr></thead>
+            <tbody>
+              <tr><td>Sílvio Ferreira</td><td style="text-align:center">3</td><td style="text-align:center">2</td><td style="text-align:center">3</td><td style="text-align:center"><strong>8</strong></td></tr>
+              <tr><td>Luciano Ramos</td><td style="text-align:center">4</td><td style="text-align:center">4</td><td style="text-align:center">1</td><td style="text-align:center"><strong>9</strong></td></tr>
+              <tr><td>Felipe Manoel</td><td style="text-align:center">1</td><td style="text-align:center">2</td><td style="text-align:center">2</td><td style="text-align:center"><strong>5</strong></td></tr>
+              <tr><td>Eli Rocha</td><td style="text-align:center">0</td><td style="text-align:center">4</td><td style="text-align:center">2</td><td style="text-align:center"><strong>6</strong></td></tr>
+              <tr><td>Márcio Faria</td><td style="text-align:center">0</td><td style="text-align:center">3</td><td style="text-align:center">1</td><td style="text-align:center"><strong>4</strong></td></tr>
+              <tr><td>Alaor Leonardo</td><td style="text-align:center">1</td><td style="text-align:center">1</td><td style="text-align:center">1</td><td style="text-align:center"><strong>3</strong></td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- TABELAS DETALHADAS -->
+        <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px">
+          <div>
+            <div style="font-weight:700;font-size:.85rem;color:#475569;margin-bottom:6px">Junho/2026 — 20 ocorrências</div>
+            <table class="eq-table" style="font-size:.78rem">
+              <thead><tr><th>Data</th><th>Colaborador</th><th>Tipo</th><th>Doc.</th></tr></thead>
+              <tbody>
+                <tr><td>01/06</td><td>Luciano Ramos</td><td>Saída antecipada</td><td style="color:#ef4444">Não</td></tr>
+                <tr><td>01-02/06</td><td>Sílvio Ferreira</td><td>Ausência integral</td><td style="color:#22c55e">Atestado</td></tr>
+                <tr><td>03/06</td><td>Sílvio Ferreira</td><td>Ausência integral</td><td style="color:#22c55e">Atestado 5d</td></tr>
+                <tr><td>05/06</td><td>Alaor Leonardo</td><td>Ausência parcial</td><td style="color:#ef4444">Não</td></tr>
+                <tr><td>05/06</td><td>Luciano Ramos</td><td>Ausência integral</td><td style="color:#22c55e">Banco horas</td></tr>
+                <tr><td>08/06</td><td>Eli Antônio</td><td>Saída antecipada</td><td style="color:#ef4444">Não</td></tr>
+                <tr><td>10/06</td><td>Luciano Ramos</td><td>Ausência parcial</td><td style="color:#ef4444">Não</td></tr>
+                <tr><td>10/06</td><td>Sidnei Soares</td><td>Atraso</td><td style="color:#ef4444">Não</td></tr>
+                <tr><td>11/06</td><td>Nelson Nakashima</td><td>Saída antecipada</td><td style="color:#ef4444">Não</td></tr>
+                <tr><td>19/06</td><td>Isaque</td><td>Day off</td><td style="color:#ef4444">Não</td></tr>
+                <tr><td>22/06</td><td>Antônio Marcos</td><td>Saída antecipada</td><td style="color:#ef4444">Não</td></tr>
+                <tr><td>22/06</td><td>Luciano Ramos</td><td>Ausência parcial</td><td style="color:#ef4444">Não</td></tr>
+                <tr><td>22-26/06</td><td>Sílvio Ferreira</td><td>Ausência parcial diária</td><td style="color:#ef4444">Não</td></tr>
+                <tr><td>23/06</td><td>Clay Domingos</td><td>Atraso</td><td style="color:#ef4444">Não</td></tr>
+                <tr><td>23/06</td><td>Felipe Manoel</td><td>Ausência integral</td><td style="color:#ef4444">Não</td></tr>
+                <tr><td>23/06</td><td>Antônio Malvão</td><td>Ausência integral</td><td style="color:#ef4444">Não</td></tr>
+                <tr><td>24/06</td><td>Antônio Marcos</td><td>Ausência parcial</td><td style="color:#ef4444">Não</td></tr>
+                <tr><td>25/06</td><td>Eli Antônio</td><td>Ausência parcial</td><td style="color:#ef4444">Não</td></tr>
+                <tr><td>30/06</td><td>Erivaldo Marques</td><td>Ausência integral</td><td style="color:#22c55e">Atestado 2d</td></tr>
+                <tr><td>01/07*</td><td>Erivaldo Marques</td><td>Continuação atestado</td><td style="color:#22c55e">Atestado</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div>
+            <div style="font-weight:700;font-size:.85rem;color:#475569;margin-bottom:6px">Julho/2026 — 20 ocorrências</div>
+            <table class="eq-table" style="font-size:.78rem">
+              <thead><tr><th>Data</th><th>Colaborador</th><th>Tipo</th><th>Doc.</th></tr></thead>
+              <tbody>
+                <tr><td>01/07</td><td>Erivaldo</td><td>Ausência 2 dias</td><td style="color:#22c55e">Atestado</td></tr>
+                <tr><td>02/07</td><td>Sílvio Ferreira</td><td>Ausência</td><td style="color:#22c55e">Atestado</td></tr>
+                <tr><td>02/07</td><td>Felipe Manoel</td><td>Saída antecipada</td><td style="color:#ef4444">Não</td></tr>
+                <tr><td>03/07</td><td>Luciano Ramos</td><td>Ausência parcial</td><td style="color:#ef4444">Não</td></tr>
+                <tr><td>10/07</td><td>Márcio Faria</td><td>Saída antecipada</td><td style="color:#ef4444">Não</td></tr>
+                <tr><td>10/07</td><td>Alaor Leonardo</td><td>Ausência integral</td><td style="color:#ef4444">Não</td></tr>
+                <tr><td>10/07</td><td>Leandro Oliveira</td><td>Ausência integral</td><td style="color:#ef4444">Não</td></tr>
+                <tr><td>10/07</td><td>Luciano Ramos</td><td>Ausência integral</td><td style="color:#ef4444">Não</td></tr>
+                <tr><td>16/07</td><td>Sílvio Ferreira</td><td>Atraso</td><td style="color:#ef4444">Não</td></tr>
+                <tr><td>17/07</td><td>Felipe Manoel</td><td>Saída antecipada</td><td style="color:#ef4444">Não</td></tr>
+                <tr><td>20/07</td><td>Luciano Ramos</td><td>Ausência parcial</td><td style="color:#ef4444">Não</td></tr>
+                <tr><td>21/07</td><td>Márcio Faria</td><td>Ausência integral</td><td style="color:#22c55e">Atestado</td></tr>
+                <tr><td>23/07</td><td>Alexsandro Gadi</td><td>Ausência parcial</td><td style="color:#ef4444">Não</td></tr>
+                <tr><td>24/07</td><td>Eli Rocha</td><td>Ausência integral</td><td style="color:#ef4444">Não</td></tr>
+                <tr><td>28/07</td><td>Márcio Faria</td><td>Ausência integral</td><td style="color:#ef4444">Não</td></tr>
+                <tr><td>28/07</td><td>Eli Rocha</td><td>Ausência</td><td style="color:#ef4444">Não</td></tr>
+                <tr><td>30/07</td><td>Luciano Ramos</td><td>Ausência integral</td><td style="color:#ef4444">Não</td></tr>
+                <tr><td>31/07</td><td>José Cícero</td><td>Ausência parcial</td><td style="color:#ef4444">Não</td></tr>
+                <tr><td>31/07</td><td>Eli Rocha</td><td>Ausência parcial</td><td style="color:#ef4444">Não</td></tr>
+                <tr><td>31/07</td><td>Antônio Marcos</td><td>Ausência</td><td style="color:#ef4444">Não</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div>
+            <div style="font-weight:700;font-size:.85rem;color:#475569;margin-bottom:6px">Agosto/2026 — 13 ocorrências</div>
+            <table class="eq-table" style="font-size:.78rem">
+              <thead><tr><th>Data</th><th>Colaborador</th><th>Tipo</th><th>Doc.</th></tr></thead>
+              <tbody>
+                <tr><td>03/08</td><td>Alexsandro Gadi</td><td>Ausência (tarde)</td><td style="color:#ef4444">Não</td></tr>
+                <tr><td>04/08</td><td>Everton Leonel</td><td>Atraso manhã</td><td style="color:#ef4444">Não</td></tr>
+                <tr><td>05/08</td><td>Márcio Faria</td><td>Ausência parcial</td><td style="color:#ef4444">Não</td></tr>
+                <tr><td>05/08</td><td>Sílvio Ferreira</td><td>Saída antecipada</td><td style="color:#ef4444">Não</td></tr>
+                <tr><td>06/08</td><td>Everton Leonel</td><td>Ausência integral</td><td style="color:#ef4444">Não</td></tr>
+                <tr><td>06/08</td><td>Luciano Ramos</td><td>Ausência parcial</td><td style="color:#ef4444">Não</td></tr>
+                <tr><td>07/08</td><td>Felipe Manoel</td><td>Ausência</td><td style="color:#ef4444">Não</td></tr>
+                <tr><td>12/08</td><td>Sílvio Ferreira</td><td>Saída antecipada</td><td style="color:#ef4444">Não</td></tr>
+                <tr><td>14/08</td><td>Eli Rocha</td><td>Ausência parcial</td><td style="color:#ef4444">Não</td></tr>
+                <tr><td>18/08</td><td>Eli Rocha</td><td>Ausência integral</td><td style="color:#ef4444">Não</td></tr>
+                <tr><td>28/08</td><td>Sílvio Ferreira</td><td>Ausência parcial</td><td style="color:#ef4444">Não</td></tr>
+                <tr><td>28/08</td><td>Alaor Leonardo</td><td>Ausência parcial</td><td style="color:#ef4444">Não</td></tr>
+                <tr><td>31/08</td><td>Felipe Manoel</td><td>Atraso manhã</td><td style="color:#ef4444">Não</td></tr>
+              </tbody>
+            </table>
+            <div style="margin-top:10px;font-weight:700;font-size:.85rem;color:#475569">Setembro/2026 (parcial)</div>
+            <table class="eq-table" style="font-size:.78rem;margin-top:6px">
+              <thead><tr><th>Colaborador</th><th>Motivo</th></tr></thead>
+              <tbody>
+                <tr><td>Antônio Marcos</td><td>A confirmar</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div style="margin-top:12px;background:#f8fafc;border-radius:8px;padding:12px;font-size:.82rem;color:#475569;line-height:1.7">
+          <strong>Conclusão:</strong> Pico em junho e julho (20 ocorrências cada); redução em agosto (13) — tendência positiva. Principal motivo: saúde (~70%). <strong>Ponto crítico:</strong> baixíssima adesão à documentação comprobatória — ação corretiva recomendada. Colaboradores com maior recorrência: Luciano Ramos (9x), Sílvio Ferreira (8x), Eli Rocha (6x).
+        </div>
+      </div>
+    </div>
   </div>
 
   <!-- ═══ VENDAS ═══ -->
   <div id="vendas" class="section">
     <div class="month-tabs">
       <div class="month-tab" onclick="showVendas('jun',this)">Jun/26</div>
-      <div class="month-tab active" onclick="showVendas('jul',this)">Jul/26</div>
+      <div class="month-tab" onclick="showVendas('jul',this)">Jul/26</div>
+      <div class="month-tab active" onclick="showVendas('ago',this)">Ago/26</div>
     </div>
     <!-- Evolução sempre visível -->
     <div class="charts-row-equal" style="margin-bottom:24px">
@@ -315,7 +510,7 @@
       </div>
     </div>
     <!-- JUL/26 -->
-    <div class="venda-section" id="venda-jul">
+    <div class="venda-section" id="venda-jul" style="display:none">
       <div class="section-title">🔩 Funil de Peças</div>
       <div class="kpis" style="grid-template-columns:repeat(5,1fr)" id="vendasKpis"></div>
       <div class="charts-row-equal" style="margin-bottom:24px">
@@ -363,6 +558,54 @@
         </div>
       </div>
     </div>
+    <!-- AGO/26 -->
+    <div class="venda-section" id="venda-ago">
+      <div class="section-title">🔩 Funil de Peças — Agosto/26</div>
+      <div class="kpis" style="grid-template-columns:repeat(5,1fr)" id="vendasKpisAgo"></div>
+      <div class="charts-row-equal" style="margin-bottom:24px">
+        <div class="card" style="visibility:hidden"></div>
+        <div class="card">
+          <h2>Indicadores Peças — Ago/26</h2>
+          <table class="eq-table">
+            <thead><tr><th>Indicador</th><th>Resultado</th><th>Variação vs Jul</th></tr></thead>
+            <tbody>
+              <tr><td>Negócios Ganhos</td><td><strong>26</strong></td><td class="delta-up">+1</td></tr>
+              <tr><td>Valor Ganho</td><td><strong>R$ 70.182,00</strong></td><td style="color:#ef4444">-R$ 10.630,75</td></tr>
+              <tr><td>Negócios Iniciados</td><td><strong>30</strong></td><td class="delta-up">+3</td></tr>
+              <tr><td>Valor Iniciado</td><td><strong>R$ 98.174,75</strong></td><td class="delta-up">+R$ 2.687,00</td></tr>
+              <tr><td>Negócios Perdidos</td><td><strong>2</strong></td><td style="color:#ef4444">+1</td></tr>
+              <tr><td>Ticket Médio</td><td><strong>R$ 2.699,31</strong></td><td style="color:#ef4444">-R$ 533,20</td></tr>
+              <tr><td>Ciclo Médio</td><td><strong>1 dia</strong></td><td class="delta-up">-6 dias</td></tr>
+              <tr><td>Taxa Conv. (qtd)</td><td><strong>92,9%</strong></td><td style="color:#ef4444">-3,3%</td></tr>
+              <tr><td>Taxa Conv. (valor)</td><td><strong>53,8%</strong></td><td style="color:#ef4444">-38,9%</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="section-title" style="margin-top:4px">🔧 Funil de Manutenção — Agosto/26</div>
+      <div class="kpis" style="grid-template-columns:repeat(5,1fr)" id="manutKpisAgo"></div>
+      <div class="charts-row-equal" style="margin-bottom:16px">
+        <div class="card" style="visibility:hidden"></div>
+        <div class="card">
+          <h2>Indicadores Manutenção — Ago/26</h2>
+          <table class="eq-table">
+            <thead><tr><th>Indicador</th><th>Resultado</th><th>Variação vs Jul</th></tr></thead>
+            <tbody>
+              <tr><td>Negócios Ganhos</td><td><strong>2</strong></td><td style="color:#94a3b8">+0</td></tr>
+              <tr><td>Valor Ganho</td><td><strong>R$ 5.900,00</strong></td><td class="delta-up">+R$ 2.400,00</td></tr>
+              <tr><td>Negócios Iniciados</td><td><strong>0</strong></td><td style="color:#ef4444">-2</td></tr>
+              <tr><td>Valor Iniciado</td><td><strong>R$ 0,00</strong></td><td style="color:#ef4444">-R$ 3.400,00</td></tr>
+              <tr><td>Negócios Perdidos</td><td><strong>0</strong></td><td style="color:#94a3b8">+0</td></tr>
+              <tr><td>Ticket Médio</td><td><strong>R$ 2.950,00</strong></td><td class="delta-up">+R$ 1.200,00</td></tr>
+              <tr><td>Ciclo Médio</td><td><strong>38 dias</strong></td><td style="color:#ef4444">+26 dias</td></tr>
+              <tr><td>Taxa Conv. (qtd)</td><td><strong>100%</strong></td><td style="color:#94a3b8">+0%</td></tr>
+              <tr><td>Taxa Conv. (valor)</td><td><strong>100%</strong></td><td style="color:#94a3b8">+0%</td></tr>
+              <tr><td>Motivo de Perda</td><td colspan="2">Nenhuma perda</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
   </div>
 
   <!-- ═══ FATURAMENTO ═══ -->
@@ -382,6 +625,7 @@
             <tr><td>Maio</td><td>R$ 54.914</td><td>—</td><td>—</td><td><span class="fat-low">▼ Pior mês</span></td></tr>
             <tr><td>Junho</td><td>R$ 109.177</td><td>R$ 39.378</td><td>R$ 148.555</td><td><span class="fat-highlight">▲ Melhor mês</span></td></tr>
             <tr><td>Julho</td><td>R$ 88.488</td><td>R$ 8.788</td><td>R$ 97.276</td><td><span style="font-size:.75rem;color:#94a3b8">-34,5% vs Jun</span></td></tr>
+            <tr><td>Agosto</td><td>R$ 55.820</td><td>R$ 1.729</td><td>R$ 57.549</td><td><span class="fat-low">▼ -40,9% vs Jul</span></td></tr>
           </tbody>
         </table>
       </div>
@@ -389,7 +633,8 @@
     <div style="margin-top:16px">
       <div class="month-tabs" style="margin-bottom:16px">
         <div class="month-tab" onclick="showFat('janjun',this)">Jan–Jun/26</div>
-        <div class="month-tab active" onclick="showFat('jul',this)">Jul/26</div>
+        <div class="month-tab" onclick="showFat('jul',this)">Jul/26</div>
+        <div class="month-tab active" onclick="showFat('ago',this)">Ago/26</div>
       </div>
       <!-- Jan-Jun detalhe -->
       <div class="fat-section" id="fat-janjun" style="display:none">
@@ -448,7 +693,7 @@
         </div>
       </div>
       <!-- Jul detalhe -->
-      <div class="fat-section" id="fat-jul">
+      <div class="fat-section" id="fat-jul" style="display:none">
       <div class="charts-row-3">
       <div class="card" style="grid-column:span 1">
         <h2>Top Clientes — Julho/26</h2>
@@ -503,6 +748,61 @@
       </div>
       </div><!-- /charts-row-3 jul -->
       </div><!-- /fat-section jul -->
+
+      <!-- Ago detalhe -->
+      <div class="fat-section" id="fat-ago">
+      <div class="charts-row-3">
+      <div class="card" style="grid-column:span 1">
+        <h2>Top Clientes — Agosto/26</h2>
+        <table class="eq-table">
+          <thead><tr><th>#</th><th>Cliente</th><th style="text-align:right">Total</th></tr></thead>
+          <tbody>
+            <tr><td>1</td><td>Ed. Res. Saint Clair</td><td style="text-align:right">R$ 8.849</td></tr>
+            <tr><td>2</td><td>Res. Praia do Sino</td><td style="text-align:right">R$ 8.679</td></tr>
+            <tr><td>3</td><td>Ed. Res. Ilha de Malta</td><td style="text-align:right">R$ 3.200</td></tr>
+            <tr><td>4</td><td>Cond. Flat Service Priority</td><td style="text-align:right">R$ 2.700</td></tr>
+            <tr><td>5</td><td>Residencial Bergamo</td><td style="text-align:right">R$ 2.656</td></tr>
+          </tbody>
+        </table>
+        <h2 style="margin-top:16px">Serviços — Agosto/26</h2>
+        <table class="eq-table">
+          <thead><tr><th>#</th><th>Cliente</th><th style="text-align:right">Total</th></tr></thead>
+          <tbody>
+            <tr><td>1</td><td>Res. Viamar IV</td><td style="text-align:right">R$ 1.045</td></tr>
+            <tr><td>2</td><td>Cond. Res. Leonardo Residence</td><td style="text-align:right">R$ 684</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="card">
+        <h2>Top Peças por Quantidade — Ago/26</h2>
+        <table class="eq-table">
+          <thead><tr><th>#</th><th>Peça</th><th style="text-align:right">Qtde</th></tr></thead>
+          <tbody>
+            <tr><td>1</td><td>Mola da Barra de Porta</td><td style="text-align:right">28</td></tr>
+            <tr><td>2</td><td>Circuito de Botão Vermelho</td><td style="text-align:right">22</td></tr>
+            <tr><td>3</td><td>Luminária LED 5W Spot</td><td style="text-align:right">19</td></tr>
+            <tr><td>4</td><td>Roldana 50mm Montada</td><td style="text-align:right">36</td></tr>
+            <tr><td>5</td><td>Óleo p/ Máquina de Tração</td><td style="text-align:right">55</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="card">
+        <h2>Top Peças por Faturamento — Ago/26</h2>
+        <table class="eq-table">
+          <thead><tr><th>#</th><th>Peça</th><th style="text-align:right">Total</th></tr></thead>
+          <tbody>
+            <tr><td>1</td><td>Óleo p/ Máquina de Tração</td><td style="text-align:right">R$ 5.500</td></tr>
+            <tr><td>2</td><td>Rampa Móvel</td><td style="text-align:right">R$ 5.247</td></tr>
+            <tr><td>3</td><td>Roldana 50mm Montada Barra Porta</td><td style="text-align:right">R$ 4.301</td></tr>
+            <tr><td>4</td><td>Barreira Infravermelha Cabina</td><td style="text-align:right">R$ 3.200</td></tr>
+            <tr><td>5</td><td>Ventilador p/ Cabina</td><td style="text-align:right">R$ 2.700</td></tr>
+            <tr><td>6</td><td>Placa Eletr BOT MC-02</td><td style="text-align:right">R$ 1.650</td></tr>
+            <tr><td>7</td><td>Placa Eletr Retificadora PRT-04</td><td style="text-align:right">R$ 1.800</td></tr>
+          </tbody>
+        </table>
+      </div>
+      </div><!-- /charts-row-3 ago -->
+      </div><!-- /fat-section ago -->
     </div><!-- /outer div faturamento detail -->
   </div>
 
@@ -515,7 +815,7 @@
         <table class="eq-table">
           <thead><tr><th>Indicador</th><th>Resultado</th></tr></thead>
           <tbody>
-            <tr><td>Total Colaboradores</td><td><strong>58</strong></td></tr>
+            <tr><td>Total Colaboradores</td><td><strong>57</strong></td></tr>
             <tr><td>Desligamentos</td><td><strong>3</strong></td></tr>
             <tr><td>Turnover Geral</td><td><strong>5,17%</strong></td></tr>
             <tr><td>Turnover Voluntário</td><td><strong>1</strong> (Joel Dias Nascimento — mai/26)</td></tr>
@@ -533,7 +833,7 @@
             <tr><td>Total de vagas</td><td><strong>6</strong></td></tr>
             <tr><td>Vagas fechadas</td><td>4</td></tr>
             <tr><td>Vagas em aberto</td><td>2</td></tr>
-            <tr><td>Tempo médio de contratação</td><td>56,7 dias</td></tr>
+            <tr><td>Tempo médio de contratação</td><td>49,25 dias</td></tr>
             <tr><td>Vagas acima de 30 dias</td><td>3</td></tr>
             <tr><td>Vagas acima de 60 dias</td><td>0</td></tr>
           </tbody>
@@ -546,11 +846,11 @@
         <table class="eq-table">
           <thead><tr><th>Indicador</th><th>Resultado</th></tr></thead>
           <tbody>
-            <tr><td>Avaliações realizadas</td><td>2</td></tr>
-            <tr><td>% avaliações realizadas</td><td>50%</td></tr>
-            <tr><td>% feedback positivo</td><td>1</td></tr>
-            <tr><td>% feedback negativo</td><td>0</td></tr>
-            <tr><td>Qualidade onboarding</td><td>0,5</td></tr>
+            <tr><td>Avaliações realizadas</td><td>3</td></tr>
+            <tr><td>% avaliações realizadas</td><td>75%</td></tr>
+            <tr><td>% feedback positivo</td><td>100%</td></tr>
+            <tr><td>% feedback negativo</td><td>0%</td></tr>
+            <tr><td>Qualidade onboarding</td><td>1,0</td></tr>
           </tbody>
         </table>
       </div>
@@ -574,9 +874,10 @@
           <tr><td>1</td><td>Técnico de Segurança</td><td>Fernando Fernandes</td><td>05/02/2026</td><td>06/04/2026</td><td>60</td><td>60</td><td>Michel</td><td><span class="prod-badge prod-green">Fechada</span></td></tr>
           <tr><td>2</td><td>Auxiliar de Almoxarifado</td><td>Isaque Vieira Gomes</td><td>15/03/2026</td><td>11/05/2026</td><td>57</td><td>30</td><td>Donizetti</td><td><span class="prod-badge prod-green">Fechada</span></td></tr>
           <tr><td>3</td><td>Ajudante de Manutenção</td><td>Allan dos Santos Fialho</td><td>21/05/2026</td><td>13/07/2026</td><td>53</td><td>60</td><td>Romildo</td><td><span class="prod-badge prod-green">Fechada</span></td></tr>
-          <tr><td>4</td><td>Ajudante de Montagem</td><td>Jeovânio</td><td>21/07/2026</td><td>12/08/2026</td><td>—</td><td>30</td><td>Leonardo</td><td><span class="prod-badge prod-green">Fechada</span></td></tr>
+          <tr><td>4</td><td>Ajudante de Montagem</td><td>Jeovânio Santos Silva</td><td>21/07/2026</td><td>17/08/2026</td><td>27</td><td>30</td><td>Leonardo</td><td><span class="prod-badge prod-green">Fechada</span></td></tr>
           <tr><td>5</td><td>Ajudante de Montagem</td><td>—</td><td>21/07/2026</td><td>—</td><td>—</td><td>30</td><td>Leonardo</td><td><span class="prod-badge prod-yellow">Em aberto</span></td></tr>
           <tr><td>6</td><td>Ajudante de Solda</td><td>—</td><td>24/07/2026</td><td>—</td><td>—</td><td>—</td><td>Donizetti</td><td><span class="prod-badge prod-yellow">Em aberto</span></td></tr>
+          <tr><td>7</td><td>Mecânico de Chamado</td><td>Joel Dias Nascimento (retorno)</td><td>—</td><td>02/09/2026</td><td>—</td><td>—</td><td>Romildo</td><td><span class="prod-badge prod-green">Fechada</span></td></tr>
         </tbody>
       </table>
     </div>
@@ -591,19 +892,19 @@
         <div class="sst-sub">Ambos com afastamento · Tipo: Típico</div>
       </div>
       <div class="sst-card orange">
-        <div class="sst-val">48,26</div>
+        <div class="sst-val">24,92</div>
         <div class="sst-label">Taxa de Frequência (TF)</div>
-        <div class="sst-sub">por milhão de horas trab. · <span style="background:#fff7ed;color:#c2410c;padding:2px 8px;border-radius:10px;font-size:.75rem;font-weight:700">Alto (30–50)</span></div>
-      </div>
-      <div class="sst-card red">
-        <div class="sst-val">5,41</div>
-        <div class="sst-label">Índice Relativo de Acidentes (IRA)</div>
-        <div class="sst-sub"><span style="background:#fee2e2;color:#dc2626;padding:2px 8px;border-radius:10px;font-size:.75rem;font-weight:700">Alto (acima de 5%)</span></div>
+        <div class="sst-sub">por milhão de horas trab. · <span style="background:#fef9c3;color:#854d0e;padding:2px 8px;border-radius:10px;font-size:.75rem;font-weight:700">Regular / Atenção (15–30)</span></div>
       </div>
       <div class="sst-card orange">
-        <div class="sst-val">31</div>
+        <div class="sst-val">3,51</div>
+        <div class="sst-label">Índice Relativo de Acidentes (IRA)</div>
+        <div class="sst-sub"><span style="background:#fef9c3;color:#854d0e;padding:2px 8px;border-radius:10px;font-size:.75rem;font-weight:700">Atenção (3% a 5%)</span></div>
+      </div>
+      <div class="sst-card orange">
+        <div class="sst-val">58</div>
         <div class="sst-label">Dias sem Acidentes</div>
-        <div class="sst-sub">Após 17/07/2026</div>
+        <div class="sst-sub">Após 17/07/2026 · Base: 57 colaboradores · Jan–Ago/2026</div>
       </div>
     </div>
     <div class="charts-row-2">
@@ -645,30 +946,60 @@
         <div style="margin-bottom:16px">
           <div style="font-size:.82rem;font-weight:600;color:#475569;margin-bottom:8px">Taxa de Frequência (TF) — por milhão de horas:</div>
           <table class="eq-table">
-            <thead><tr><th>Classificação</th><th>TF</th><th>Torres (48,26)</th></tr></thead>
+            <thead><tr><th>Classificação</th><th>TF</th><th>Torres (24,92)</th></tr></thead>
             <tbody>
               <tr><td>Excelente</td><td>Até 5</td><td></td></tr>
               <tr><td>Bom</td><td>5 a 15</td><td></td></tr>
-              <tr><td>Regular / Atenção</td><td>15 a 30</td><td></td></tr>
-              <tr><td>Alto (requer ação)</td><td>30 a 50</td><td style="color:#f59e0b;font-weight:700">← Aqui</td></tr>
-              <tr style="background:#fff0f0"><td><strong>Crítico</strong></td><td><strong>Acima de 50</strong></td><td></td></tr>
+              <tr style="background:#fef9c3"><td><strong>Regular / Atenção</strong></td><td><strong>15 a 30</strong></td><td style="color:#854d0e;font-weight:700">← Aqui</td></tr>
+              <tr><td>Alto (requer ação)</td><td>30 a 50</td><td></td></tr>
+              <tr><td>Crítico</td><td>Acima de 50</td><td></td></tr>
             </tbody>
           </table>
         </div>
         <div>
           <div style="font-size:.82rem;font-weight:600;color:#475569;margin-bottom:8px">Índice Relativo de Acidentes (IRA):</div>
           <table class="eq-table">
-            <thead><tr><th>Classificação</th><th>IRA</th><th>Torres (5,41)</th></tr></thead>
+            <thead><tr><th>Classificação</th><th>IRA</th><th>Torres (3,51)</th></tr></thead>
             <tbody>
               <tr><td>Excelente</td><td>Até 1%</td><td></td></tr>
               <tr><td>Bom</td><td>1% a 3%</td><td></td></tr>
-              <tr><td>Atenção</td><td>3% a 5%</td><td></td></tr>
-              <tr style="background:#fff0f0"><td><strong>Alto</strong></td><td><strong>Acima de 5%</strong></td><td style="color:#ef4444;font-weight:700">← Aqui</td></tr>
+              <tr style="background:#fef9c3"><td><strong>Atenção</strong></td><td><strong>3% a 5%</strong></td><td style="color:#854d0e;font-weight:700">← Aqui</td></tr>
+              <tr><td>Alto</td><td>Acima de 5%</td><td></td></tr>
             </tbody>
           </table>
         </div>
       </div>
     </div>
+    <div class="card" style="margin-top:16px">
+      <h2>Histórico de Acidentes — Jan a Ago / 2026</h2>
+      <table class="eq-table" style="margin-top:8px">
+        <thead>
+          <tr>
+            <th>Mês</th>
+            <th>Acidentes</th>
+            <th>Com Afastamento</th>
+            <th>Sem Afastamento</th>
+            <th>TF Acumulado</th>
+            <th>IRA Acumulado</th>
+            <th>Dias sem Acidente (fim do mês)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>Janeiro</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>—</td></tr>
+          <tr><td>Fevereiro</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>—</td></tr>
+          <tr><td>Março</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>—</td></tr>
+          <tr style="background:#fff0f0"><td><strong>Abril</strong></td><td><strong>1</strong></td><td>1</td><td>0</td><td>49,83</td><td>1,75</td><td>2 (acidente 28/04)</td></tr>
+          <tr><td>Maio</td><td>0</td><td>0</td><td>0</td><td>40,55</td><td>1,75</td><td>33</td></tr>
+          <tr><td>Junho</td><td>0</td><td>0</td><td>0</td><td>33,88</td><td>1,75</td><td>63</td></tr>
+          <tr style="background:#fff0f0"><td><strong>Julho</strong></td><td><strong>1</strong></td><td>1</td><td>0</td><td>41,53</td><td>3,51</td><td>14 (acidente 17/07)</td></tr>
+          <tr><td>Agosto</td><td>0</td><td>0</td><td>0</td><td>24,92</td><td>3,51</td><td>45</td></tr>
+        </tbody>
+      </table>
+      <div style="font-size:.78rem;color:#94a3b8;margin-top:8px">
+        Base: 57 colaboradores · 176h/mês · TF = (acidentes × 1.000.000) ÷ horas-homem acumuladas · IRA = (acidentes ÷ colaboradores) × 100
+      </div>
+    </div>
+
     <div class="card" style="margin-top:16px">
       <h2>NR-01 — Ações em Andamento</h2>
       <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-top:8px">
@@ -729,13 +1060,27 @@
         </table>
         <p style="font-size:.75rem;color:#94a3b8;margin-top:8px">Atualização: 24/07/2026</p>
       </div>
+      <div class="card" style="border:2px solid #3b82f6">
+        <h2>Liftflex – Agosto/2026 <span style="font-size:.78rem;font-weight:400;color:#3b82f6">● Atual</span></h2>
+        <table class="eq-table">
+          <thead><tr><th>Categoria</th><th>Quantidade</th><th>Δ Jul</th></tr></thead>
+          <tbody>
+            <tr><td>Obra</td><td>96</td><td class="delta-up">+1</td></tr>
+            <tr><td>Diversos (sem contrato)</td><td>12</td><td class="delta-up">+1</td></tr>
+            <tr><td>Equipamentos com Contrato</td><td>418</td><td class="delta-up">+14</td></tr>
+            <tr><td>Em Negociação</td><td>—</td><td style="color:#94a3b8">—</td></tr>
+            <tr><td><strong>Total LiftFlex</strong></td><td><strong>526</strong></td><td class="delta-up">+16</td></tr>
+          </tbody>
+        </table>
+        <p style="font-size:.75rem;color:#94a3b8;margin-top:8px">Atualização: 26/08/2026</p>
+      </div>
     </div>
     <div class="card">
       <h2>Evolução de Equipamentos Ativos</h2>
       <div class="chart-wrap-tall"><canvas id="chartEq"></canvas></div>
     </div>
     <div class="card" style="margin-top:0">
-      <h2>Obras em Andamento – Julho/2026 <span style="font-size:.8rem;font-weight:400;color:#94a3b8">(35 obras · 95 equipamentos)</span></h2>
+      <h2>Obras em Andamento – Agosto/2026 <span style="font-size:.8rem;font-weight:400;color:#94a3b8">(36 obras · 96 equipamentos)</span></h2>
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:12px">
         <table class="eq-table">
           <thead><tr><th>Obra</th><th style="text-align:right">Equip.</th></tr></thead>
@@ -779,6 +1124,7 @@
             <tr><td>Amiguinho</td><td style="text-align:right">1</td></tr>
             <tr><td>Centro Esp. João Cabete</td><td style="text-align:right">1</td></tr>
             <tr><td>Farol Mania</td><td style="text-align:right">1</td></tr>
+            <tr><td>Igreja Filadélfia</td><td style="text-align:right">1</td></tr>
             <tr><td>Valência</td><td style="text-align:right">1</td></tr>
           </tbody>
         </table>
@@ -852,6 +1198,10 @@ const prodDataAll={
   jul:{
     plan:[{produto:'Barras de Porta Central',plan:200,exec:150,pct:75},{produto:'Portas de Pavimento',plan:100,exec:111,pct:111},{produto:'Cabinas',plan:8,exec:4,pct:50},{produto:'Batentes Centrais',plan:70,exec:0,pct:0},{produto:'Ferragens de Cabinas',plan:6,exec:5,pct:83}],
     criticos:1,acima:1,media:64,cabinas:4
+  },
+  ago:{
+    plan:[{produto:'Barras de Porta Central',plan:100,exec:150,pct:150},{produto:'Portas de Pavimento',plan:100,exec:80,pct:80},{produto:'Cabinas',plan:6,exec:4,pct:67},{produto:'Batentes Centrais',plan:97,exec:161,pct:166},{produto:'Ferragens de Cabinas',plan:1,exec:1,pct:100}],
+    criticos:0,acima:2,media:113,cabinas:4
   }
 };
 
@@ -892,7 +1242,9 @@ function initProdCharts(mes){
 }
 
 // Inicializa Maio ao carregar
-initProdCharts('mai');
+initProdCharts('ago');
+
+new Chart(document.getElementById('chartAbsent'),{type:'bar',data:{labels:['Jun/26','Jul/26','Ago/26','Set/26 (parcial)'],datasets:[{label:'Ocorrências de Absenteísmo',data:[20,20,13,1],backgroundColor:['#93c5fd','#fca5a5','#86efac','#cbd5e1'],borderRadius:6,borderWidth:0}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},datalabels:{display:false}},scales:{y:{beginAtZero:true,grid:{color:'#f1f5f9'},ticks:{stepSize:5}},x:{grid:{display:false}}}}});
 prodChartsInit['mai']=true;
 
 // ══ MONTAGEM ══
@@ -968,8 +1320,22 @@ document.getElementById('vendasKpis').innerHTML=`
   <div class="kpi teal"><div class="kpi-val">96,2%</div><div class="kpi-pct">+1,8%</div><div class="kpi-label">Taxa de Conversão</div></div>
   <div class="kpi gray"><div class="kpi-val">7 dias</div><div class="kpi-pct">+1 dia</div><div class="kpi-label">Ciclo Médio</div></div>
 `;
+document.getElementById('vendasKpisAgo').innerHTML=`
+  <div class="kpi green"><div class="kpi-val">26</div><div class="kpi-pct">+1 vs Jul</div><div class="kpi-label">Negócios Ganhos</div></div>
+  <div class="kpi blue"><div class="kpi-val">R$ 70,2k</div><div class="kpi-pct">-R$ 10,6k vs Jul</div><div class="kpi-label">Valor Ganho</div></div>
+  <div class="kpi orange"><div class="kpi-val">R$ 2.699</div><div class="kpi-pct">-R$ 533 vs Jul</div><div class="kpi-label">Ticket Médio</div></div>
+  <div class="kpi teal"><div class="kpi-val">92,9%</div><div class="kpi-pct">-3,3%</div><div class="kpi-label">Taxa de Conversão</div></div>
+  <div class="kpi gray"><div class="kpi-val">1 dia</div><div class="kpi-pct">-6 dias</div><div class="kpi-label">Ciclo Médio</div></div>
+`;
+document.getElementById('manutKpisAgo').innerHTML=`
+  <div class="kpi green"><div class="kpi-val">2</div><div class="kpi-pct">+0 vs Jul</div><div class="kpi-label">Negócios Ganhos</div></div>
+  <div class="kpi teal"><div class="kpi-val">R$ 5.900</div><div class="kpi-pct">+R$ 2.400 vs Jul</div><div class="kpi-label">Valor Ganho</div></div>
+  <div class="kpi orange"><div class="kpi-val">R$ 2.950</div><div class="kpi-pct">+R$ 1.200 vs Jul</div><div class="kpi-label">Ticket Médio</div></div>
+  <div class="kpi blue"><div class="kpi-val">100%</div><div class="kpi-pct">+0%</div><div class="kpi-label">Taxa de Conversão</div></div>
+  <div class="kpi gray"><div class="kpi-val">38 dias</div><div class="kpi-pct">+26 dias</div><div class="kpi-label">Ciclo Médio</div></div>
+`;
 new Chart(document.getElementById('chartVendasEvolucao'),{
-  type:'line',data:{labels:['Fev/26','Mar/26','Abr/26','Mai/26','Jun/26','Jul/26'],datasets:[{label:'Valor ganho (R$)',data:[100000,95000,100000,185000,60000,80813],borderColor:'#22c55e',backgroundColor:'rgba(34,197,94,0.1)',fill:true,tension:0.4,pointBackgroundColor:'#22c55e',pointRadius:5}]},
+  type:'line',data:{labels:['Fev/26','Mar/26','Abr/26','Mai/26','Jun/26','Jul/26','Ago/26'],datasets:[{label:'Valor ganho (R$)',data:[100000,95000,100000,185000,60000,80813,70182],borderColor:'#22c55e',backgroundColor:'rgba(34,197,94,0.1)',fill:true,tension:0.4,pointBackgroundColor:'#22c55e',pointRadius:5}]},
   options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{callbacks:{label:ctx=>'R$ '+ctx.raw.toLocaleString('pt-BR')}}},scales:{y:{ticks:{callback:v=>'R$ '+(v/1000).toFixed(0)+'k'}}}}
 });
 new Chart(document.getElementById('chartProdutos'),{
@@ -986,26 +1352,26 @@ document.getElementById('manutKpis').innerHTML=`
   <div class="kpi gray"><div class="kpi-val">12 dias</div><div class="kpi-pct">-28 dias</div><div class="kpi-label">Ciclo Médio</div></div>
 `;
 new Chart(document.getElementById('chartManutEvolucao'),{
-  type:'line',data:{labels:['Fev/26','Mar/26','Abr/26','Mai/26','Jun/26','Jul/26'],datasets:[{label:'Valor ganho (R$)',data:[0,0,0,4500,4500,3500],borderColor:'#0d9488',backgroundColor:'rgba(13,148,136,0.1)',fill:true,tension:0.4,pointBackgroundColor:'#0d9488',pointRadius:5}]},
+  type:'line',data:{labels:['Fev/26','Mar/26','Abr/26','Mai/26','Jun/26','Jul/26','Ago/26'],datasets:[{label:'Valor ganho (R$)',data:[0,0,0,4500,4500,3500,5900],borderColor:'#0d9488',backgroundColor:'rgba(13,148,136,0.1)',fill:true,tension:0.4,pointBackgroundColor:'#0d9488',pointRadius:5}]},
   options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{callbacks:{label:ctx=>'R$ '+ctx.raw.toLocaleString('pt-BR')}}},scales:{y:{ticks:{callback:v=>'R$ '+v.toLocaleString('pt-BR')}}}}
 });
 
 // ══ FATURAMENTO ══
 document.getElementById('fatKpis').innerHTML=`
-  <div class="kpi blue"><div class="kpi-val">R$ 647k</div><div class="kpi-pct">Jan–Jul/26</div><div class="kpi-label">Peças + Mala acumulado</div></div>
+  <div class="kpi blue"><div class="kpi-val">R$ 702k</div><div class="kpi-pct">Jan–Ago/26</div><div class="kpi-label">Peças + Mala acumulado</div></div>
   <div class="kpi green"><div class="kpi-val">R$ 148.555</div><div class="kpi-pct">melhor mês</div><div class="kpi-label">Junho/26 (total)</div></div>
   <div class="kpi red"><div class="kpi-val">R$ 54.914</div><div class="kpi-pct">pior mês</div><div class="kpi-label">Maio/26</div></div>
-  <div class="kpi orange"><div class="kpi-val">R$ 97.276</div><div class="kpi-pct">Peças + Serviços</div><div class="kpi-label">Julho/26 (total)</div></div>
+  <div class="kpi orange"><div class="kpi-val">R$ 57.549</div><div class="kpi-pct">Peças + Serviços</div><div class="kpi-label">Agosto/26 (total)</div></div>
 `;
 new Chart(document.getElementById('chartFat'),{
   type:'bar',
-  data:{labels:['Jan','Fev','Mar','Abr','Mai','Jun','Jul'],datasets:[{label:'Peças + Mala',data:[78288,117788,90173,107104,54914,109177,88488],backgroundColor:'#3b82f6',borderRadius:4,borderWidth:0},{label:'Serviços',data:[0,0,0,0,0,39378,8788],backgroundColor:'#22c55e',borderRadius:4,borderWidth:0}]},
+  data:{labels:['Jan','Fev','Mar','Abr','Mai','Jun','Jul','Ago'],datasets:[{label:'Peças + Mala',data:[78288,117788,90173,107104,54914,109177,88488,55820],backgroundColor:'#3b82f6',borderRadius:4,borderWidth:0},{label:'Serviços',data:[0,0,0,0,0,39378,8788,1729],backgroundColor:'#22c55e',borderRadius:4,borderWidth:0}]},
   options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'bottom',labels:{font:{size:11},boxWidth:12,padding:8}},tooltip:{callbacks:{label:ctx=>ctx.dataset.label+': R$ '+ctx.raw.toLocaleString('pt-BR')}}},scales:{x:{stacked:true},y:{stacked:true,ticks:{callback:v=>'R$ '+(v/1000).toFixed(0)+'k'}}}}
 });
 
 // ══ RH ══
 document.getElementById('rhKpis').innerHTML=`
-  <div class="rh-kpi blue"><div class="rh-kpi-val">58</div><div class="rh-kpi-label">Total Colaboradores</div></div>
+  <div class="rh-kpi blue"><div class="rh-kpi-val">57</div><div class="rh-kpi-label">Total Colaboradores</div></div>
   <div class="rh-kpi red"><div class="rh-kpi-val">5,17%</div><div class="rh-kpi-label">Turnover Geral</div></div>
   <div class="rh-kpi orange"><div class="rh-kpi-val">3</div><div class="rh-kpi-label">Desligamentos</div></div>
   <div class="rh-kpi green"><div class="rh-kpi-val">4</div><div class="rh-kpi-label">Vagas Fechadas</div></div>
@@ -1013,14 +1379,14 @@ document.getElementById('rhKpis').innerHTML=`
 
 // ══ EQUIPAMENTOS ══
 document.getElementById('eqKpis').innerHTML=`
-  <div class="kpi blue"><div class="kpi-val">510</div><div class="kpi-pct">+1 vs Junho</div><div class="kpi-label">Total LiftFlex (Jul)</div></div>
-  <div class="kpi green"><div class="kpi-val">404</div><div class="kpi-pct">-5 vs Junho</div><div class="kpi-label">Com Contrato (Jul)</div></div>
+  <div class="kpi blue"><div class="kpi-val">526</div><div class="kpi-pct">+16 vs Julho</div><div class="kpi-label">Total LiftFlex (Ago)</div></div>
+  <div class="kpi green"><div class="kpi-val">418</div><div class="kpi-pct">+14 vs Julho</div><div class="kpi-label">Com Contrato (Ago)</div></div>
   <div class="kpi orange"><div class="kpi-val">95</div><div class="kpi-pct">+6 vs Junho</div><div class="kpi-label">Em Obra (Jul)</div></div>
-  <div class="kpi gray"><div class="kpi-val">11</div><div class="kpi-pct">estável</div><div class="kpi-label">Sem Contrato (Jul)</div></div>
+  <div class="kpi gray"><div class="kpi-val">12</div><div class="kpi-pct">+1 vs Julho</div><div class="kpi-label">Sem Contrato (Ago)</div></div>
 `;
 new Chart(document.getElementById('chartEq'),{
   type:'bar',
-  data:{labels:['Maio','Junho','Julho'],datasets:[{label:'Com Contrato',data:[399,409,404],backgroundColor:'#22c55e',borderRadius:4,borderWidth:0},{label:'Em Obra',data:[80,89,95],backgroundColor:'#3b82f6',borderRadius:4,borderWidth:0},{label:'Sem Contrato',data:[11,11,11],backgroundColor:'#f59e0b',borderRadius:4,borderWidth:0},{label:'Em Negociação',data:[3,0,0],backgroundColor:'#94a3b8',borderRadius:4,borderWidth:0}]},
+  data:{labels:['Maio','Junho','Julho','Ago'],datasets:[{label:'Com Contrato',data:[399,409,404,418],backgroundColor:'#22c55e',borderRadius:4,borderWidth:0},{label:'Em Obra',data:[80,89,95,96],backgroundColor:'#3b82f6',borderRadius:4,borderWidth:0},{label:'Sem Contrato',data:[11,11,11,12],backgroundColor:'#f59e0b',borderRadius:4,borderWidth:0},{label:'Em Negociação',data:[3,0,0,0],backgroundColor:'#94a3b8',borderRadius:4,borderWidth:0}]},
   options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'bottom',labels:{font:{size:11},boxWidth:12,padding:8}}},scales:{x:{stacked:true},y:{stacked:true}}}
 });
 
