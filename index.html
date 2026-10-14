@@ -1783,6 +1783,22 @@ new Chart(document.getElementById('chartEq'),{
 
 document.getElementById('updateTime').textContent='Atualizado em: '+new Date().toLocaleDateString('pt-BR');
 
+// Inicializa abas de mês padrão ao carregar
+(function initDefaultTabs(){
+  // Vendas → Set/26
+  var vSet = document.getElementById('venda-set');
+  if(vSet){ 
+    document.querySelectorAll('.venda-section').forEach(function(s){s.style.display='none';});
+    vSet.style.display='block';
+  }
+  // Faturamento → Set/26
+  var fSet = document.getElementById('fat-set');
+  if(fSet){
+    document.querySelectorAll('.fat-section').forEach(function(s){s.style.display='none';});
+    fSet.style.display='block';
+  }
+})();
+
 </script>
 </body>
 </html>
