@@ -1432,8 +1432,8 @@
         </table>
         <p style="font-size:.75rem;color:#94a3b8;margin-top:8px">Atualização: 24/07/2026</p>
       </div>
-      <div class="card" style="border:2px solid #3b82f6">
-        <h2>Liftflex – Agosto/2026 <span style="font-size:.78rem;font-weight:400;color:#3b82f6">● Atual</span></h2>
+      <div class="card">
+        <h2>Liftflex – Agosto/2026</h2>
         <table class="eq-table">
           <thead><tr><th>Categoria</th><th>Quantidade</th><th>Δ Jul</th></tr></thead>
           <tbody>
@@ -1445,6 +1445,21 @@
           </tbody>
         </table>
         <p style="font-size:.75rem;color:#94a3b8;margin-top:8px">Atualização: 26/08/2026</p>
+      </div>
+      <div class="card" style="border:2px solid #3b82f6">
+        <h2>Liftflex – Setembro/2026 <span style="font-size:.78rem;font-weight:400;color:#3b82f6">● Atual</span></h2>
+        <table class="eq-table">
+          <thead><tr><th>Categoria</th><th>Quantidade</th><th>Δ Ago</th></tr></thead>
+          <tbody>
+            <tr><td>Obra</td><td>67</td><td class="delta-down">−29</td></tr>
+            <tr><td>Aguardando Início</td><td>14</td><td style="color:#94a3b8">novo</td></tr>
+            <tr><td>Aguardando Contrato</td><td>15</td><td style="color:#94a3b8">novo</td></tr>
+            <tr><td>Diversos (sem contrato)</td><td>12</td><td style="color:#94a3b8">—</td></tr>
+            <tr><td>Equipamentos com Contrato</td><td>410</td><td class="delta-down">−8</td></tr>
+            <tr><td><strong>Total LiftFlex</strong></td><td><strong>518</strong></td><td class="delta-down">−8</td></tr>
+          </tbody>
+        </table>
+        <p style="font-size:.75rem;color:#94a3b8;margin-top:8px">Atualização: 01/10/2026</p>
       </div>
     </div>
     <div class="card">
@@ -1772,14 +1787,14 @@ document.getElementById('rhKpis').innerHTML=`
 
 // ══ EQUIPAMENTOS ══
 document.getElementById('eqKpis').innerHTML=`
-  <div class="kpi blue"><div class="kpi-val">526</div><div class="kpi-pct">+16 vs Julho</div><div class="kpi-label">Total LiftFlex (Ago)</div></div>
-  <div class="kpi green"><div class="kpi-val">418</div><div class="kpi-pct">+14 vs Julho</div><div class="kpi-label">Com Contrato (Ago)</div></div>
-  <div class="kpi orange"><div class="kpi-val">95</div><div class="kpi-pct">+6 vs Junho</div><div class="kpi-label">Em Obra (Jul)</div></div>
-  <div class="kpi gray"><div class="kpi-val">12</div><div class="kpi-pct">+1 vs Julho</div><div class="kpi-label">Sem Contrato (Ago)</div></div>
+  <div class="kpi blue"><div class="kpi-val">518</div><div class="kpi-pct">−8 vs Agosto</div><div class="kpi-label">Total LiftFlex (Set)</div></div>
+  <div class="kpi green"><div class="kpi-val">410</div><div class="kpi-pct">−8 vs Agosto</div><div class="kpi-label">Com Contrato (Set)</div></div>
+  <div class="kpi orange"><div class="kpi-val">67</div><div class="kpi-pct">−29 vs Agosto</div><div class="kpi-label">Em Obra (Set)</div></div>
+  <div class="kpi gray"><div class="kpi-val">29</div><div class="kpi-pct">Aguard. Início + Contrato</div><div class="kpi-label">Aguardando (Set)</div></div>
 `;
 new Chart(document.getElementById('chartEq'),{
   type:'bar',
-  data:{labels:['Maio','Junho','Julho','Ago'],datasets:[{label:'Com Contrato',data:[399,409,404,418],backgroundColor:'#22c55e',borderRadius:4,borderWidth:0},{label:'Em Obra',data:[80,89,95,96],backgroundColor:'#3b82f6',borderRadius:4,borderWidth:0},{label:'Sem Contrato',data:[11,11,11,12],backgroundColor:'#f59e0b',borderRadius:4,borderWidth:0},{label:'Em Negociação',data:[3,0,0,0],backgroundColor:'#94a3b8',borderRadius:4,borderWidth:0}]},
+  data:{labels:['Maio','Junho','Julho','Ago','Set'],datasets:[{label:'Com Contrato',data:[399,409,404,418,410],backgroundColor:'#22c55e',borderRadius:4,borderWidth:0},{label:'Em Obra',data:[80,89,95,96,67],backgroundColor:'#3b82f6',borderRadius:4,borderWidth:0},{label:'Sem Contrato',data:[11,11,11,12,12],backgroundColor:'#f59e0b',borderRadius:4,borderWidth:0},{label:'Aguardando',data:[3,0,0,0,29],backgroundColor:'#94a3b8',borderRadius:4,borderWidth:0}]},
   options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'bottom',labels:{font:{size:11},boxWidth:12,padding:8}}},scales:{x:{stacked:true},y:{stacked:true}}}
 });
 
