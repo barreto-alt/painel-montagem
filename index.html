@@ -3063,67 +3063,7 @@ initProdCharts('set');
 prodChartsInit['set']=true;
 
 new Chart(document.getElementById('chartAbsent'),{type:'bar',data:{labels:['Jun/26','Jul/26','Ago/26','Set/26','Out/26\n(parcial)'],datasets:[{label:'Ocorrências de Absenteísmo',data:[20,20,13,17,1],backgroundColor:['#93c5fd','#fca5a5','#86efac','#fb923c','#cbd5e1'],borderRadius:6,borderWidth:0}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},datalabels:{display:false}},scales:{y:{beginAtZero:true,grid:{color:'#f1f5f9'},ticks:{stepSize:5}},x:{grid:{display:false}}}}});
-prodChartsInit['mai']=true;
-
-// ══ MONTAGEM ══
-// Montagem: snapshots imutáveis e comparação com a base anterior.
-(() => {
-  const H = MONTAGEM_HISTORY;
-  const byId = new Map(H.changes.map(c => [c.id,c]));
-  const esc = v => String(v ?? '').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-  const fmt = v => /^\d{4}-\d{2}-\d{2}$/.test(String(v)) ? v.split('-').reverse().join('/') : (v === '' || v == null ? 'Não informado' : String(v));
-  const norm = v => String(v||'').normalize('NFD').replace(/[\u0300-\u036f]/g,'').toUpperCase();
-  function phase(v){const u=String(v||'').toUpperCase();if(!u.trim())return 'Em Andamento';if(['FINALIZADO','CONCLU','CNCLU','CONLU'].some(x=>u.includes(x)))return 'Concluído';if(['EM AND','EM PROD','EM FINALIZA','PISCINA','TÉRREO','ANDAIMENTO','NDAMENTO','ANDAMETO'].some(x=>u.includes(x)))return 'Em Andamento';return 'Em Andamento';}
-  const final = r => normColor(r.status_final);
-  const $ = id => document.getElementById(id);
-  const phaseNames=['Suporte + Guias','Máquina + QC + Ferragem','Batentes','Fiação','Barra e Portas','Cabinas'];
-  const fieldNames={obra:'Obra',equip:'Equipamento',paradas:'Paradas',obs:'Observação (coluna Y)',pendente:'Pendência (coluna AB)',status_final:'Situação exibida'};
-  function fieldName(v){if(fieldNames[v])return fieldNames[v];const m=v.match(/^fases\.(\d)\.(.+)$/);return m?phaseNames[+m[1]]+' · '+({ini:'Início',fim:'Término',status:'Status'}[m[2]]):v;}
-  function changeFields(c){if(!c || c.old_index===null)return [];const before=H.previous[c.old_index],after=H.current[c.new_index];return [...(before.status_final!==after.status_final?[{field:'status_final',before:before.status_final,after:after.status_final}]:[]),...c.fields];}
-  let charts=[];
-  const isCurrent=()=> $('montVersion').value==='current';
-  const rows=()=>isCurrent()?H.current:H.previous;
-  const oldCount=H.previous.reduce((a,r)=>(a[r.status_norm]=(a[r.status_norm]||0)+1,a),{});
-  function overview(){
-    const data=rows(), counts=data.reduce((a,r)=>(a[r.status_norm]=(a[r.status_norm]||0)+1,a),{});
-    const values=[['Total de obras',data.length,H.previous.length,'blue'],['Obras',counts['Obras']||0,oldCount['Obras']||0,'orange'],['Aguardando',counts.Aguardando||0,oldCount.Aguardando||0,'red']];
-    $('kpis').innerHTML=values.map(([label,value,prior,color],i)=>`<div class="kpi ${color}"><div class="kpi-val">${value}</div><div class="kpi-pct">${i?Math.round(value*100/data.length)+'%':''}${isCurrent()?`${i?' · ':''}${value-prior>0?'+':''}${value-prior} vs. anterior`:''}</div><div class="kpi-label">${label}</div></div>`).join('');
-    $('montPosition').textContent=isCurrent()?'Referência do arquivo: 26/08/2026 · Importado em 15/09/2026':'Versão anterior preservada em 15/09/2026 · Data de referência não informada na base anterior';
-    $('montChangeFilter').disabled=!isCurrent();
-    charts.forEach(c=>c.destroy());charts=[];
-    if(typeof Chart==='undefined'){$('montChartMessage').hidden=false;return;}
-    $('montChartMessage').hidden=true;
-    const colors={Obras:'#f59e0b',Aguardando:'#ef4444'};
-    const base={responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'bottom',labels:{font:{size:11},boxWidth:12,padding:8}}}};
-    const labels=Object.keys(counts);
-    charts.push(new Chart($('chartStatus'),{type:'doughnut',data:{labels,datasets:[{data:labels.map(k=>counts[k]),backgroundColor:labels.map(k=>colors[k]),borderWidth:2,borderColor:'#fff'}]},options:base}));
-    const cats=['Obras','Aguardando'];const pc=['#f59e0b','#ef4444','#e2e8f0'];
-    charts.push(new Chart($('chartFases'),{type:'bar',data:{labels:['Suporte','Máquina','Batentes','Fiação','Barra/Portas','Cabinas'],datasets:cats.map((c,i)=>({label:c,data:phaseNames.map((_,fi)=>data.filter(r=>phase(r.fases[fi].status)===c).length),backgroundColor:pc[i]}))},options:{...base,indexAxis:'y',scales:{x:{stacked:true},y:{stacked:true}}}}));
-    const types=data.reduce((a,r)=>(a[r.tipo]=(a[r.tipo]||0)+1,a),{}),tl=Object.keys(types).sort((a,b)=>types[b]-types[a]);
-    charts.push(new Chart($('chartTipos'),{type:'doughnut',data:{labels:tl,datasets:[{data:tl.map(k=>types[k]),backgroundColor:['#3b82f6','#f59e0b','#22c55e','#8b5cf6','#ef4444','#0ea5e9','#94a3b8'],borderWidth:2,borderColor:'#fff'}]},options:base}));
-  }
-  function detail(r,c){
-    const diffs=changeFields(c);
-    const comparison=c?`<h3>${c.kind==='incluido'?'Incluído no painel nesta importação':'Diferenças em relação à versão anterior'}</h3>${c.kind==='incluido'?'<p>O registro não constava na base anterior. Isso não significa que a obra começou agora.</p>':`<table class="mont-detail-table"><thead><tr><th>Campo</th><th>Antes</th><th>Agora</th></tr></thead><tbody>${diffs.map(d=>`<tr><td>${esc(fieldName(d.field))}</td><td>${esc(fmt(d.before))}</td><td>${esc(fmt(d.after))}</td></tr>`).join('')}</tbody></table>`}`:'';
-    const phases=[...(r.modelo?[{nome:'Modelo (campo incorporado)',...r.modelo}]:[]),...r.fases];
-    return `<details class="mont-detail"><summary>${c?(c.kind==='incluido'?'Novo registro':`${c.fields.length} ${c.fields.length===1?'diferença':'diferenças'}`):'Ver etapas e datas'}</summary><div class="mont-detail-content">${comparison}<h3>Etapas e datas ${r.source_row?`· Planilha1, linha ${r.source_row}`:''}</h3><table class="mont-detail-table"><thead><tr><th>Etapa</th><th>Início</th><th>Término</th><th>Status original</th></tr></thead><tbody>${phases.map(f=>`<tr><td>${esc(f.nome)}</td><td>${esc(fmt(f.ini))}</td><td>${esc(fmt(f.fim))}</td><td>${esc(fmt(f.status))}</td></tr>`).join('')}</tbody></table>${r.modelo?'<p>A etapa Modelo não existia no painel anterior. Sua incorporação não entra na contagem das diferenças.</p>':''}</div></details>`;
-  }
-  function render(){
-    const q=norm($('search').value),fs=$('filtStatus').value,ft=$('filtTipo').value,ff=$('filtFase').value,fc=isCurrent()?$('montChangeFilter').value:'';
-    const data=rows(),filtered=data.filter(r=>{const c=byId.get(r.record_id);return (!q||norm(r.obra+' '+r.equip).includes(q))&&(!fs||r.status_norm===fs)&&(!ft||r.tipo===ft)&&(!ff||r.fases.some(f=>phase(f.status)===ff))&&(!fc||(fc==='differences'?!!c:c?.kind===fc));});
-    $('countInfo').textContent=`${filtered.length} de ${data.length} registros`;
-    $('tblBody').innerHTML=filtered.length?filtered.map(r=>{const c=isCurrent()?byId.get(r.record_id):null;const dots=r.fases.map(f=>`<span class="dot ${ {'Obras':'dot-and',Aguardando:'dot-ag'}[phase(f.status)]}" title="${esc(f.nome+': '+(f.status||'Sem status'))}"></span>`).join('');const notes=[r.pendente?`Pendência: ${r.pendente}`:'',r.obs&&r.obs!==r.pendente?`Observação: ${r.obs}`:''].filter(Boolean).join(' · ');return `<tr class="${c?(c.kind==='incluido'?'mont-new':'mont-changed'):''}"><td><strong>${esc(r.obra)}</strong>${r.source_row?`<small class="mont-source">Linha ${r.source_row} da planilha</small>`:''}</td><td>${esc(r.equip||'Não informado')}</td><td>${r.paradas||'—'}</td><td><div class="fase-dots">${dots}</div></td><td><span class="badge ${badgeClass(r.status_norm)}">${esc(r.status_norm)}</span></td><td class="mont-notes">${esc(notes||'—')}</td><td>${detail(r,c)}</td></tr>`;}).join(''):'<tr><td colspan="7">Nenhum equipamento corresponde aos filtros.</td></tr>';
-  }
-  const changed=H.changes.filter(c=>c.kind==='alterado').length,added=H.changes.filter(c=>c.kind==='incluido').length;
-  $('montSummary').textContent=`${changed} registros com diferenças · ${added} incluídos no painel · ${H.previous.length-changed-H.missing_previous_indices.length} sem diferenças nos campos comparáveis · ${H.missing_previous_indices.length} ausentes na nova planilha`;
-  $('montVersion').addEventListener('change',()=>{overview();render();});
-  ['search','filtStatus','filtTipo','filtFase','montChangeFilter'].forEach(id=>$(id).addEventListener(id==='search'?'input':'change',render));
-  $('montExport').addEventListener('click',()=>{const lines=[['Obra','Equipamento','Linha da planilha','Tipo','Campo','Antes','Agora']];for(const c of H.changes){const r=H.current[c.new_index];const fields=c.kind==='incluido'?[{field:'Registro',before:'Ausente na versão anterior',after:'Incluído no painel'}]:changeFields(c);for(const f of fields)lines.push([r.obra,r.equip,r.source_row,c.kind,fieldName(f.field),fmt(f.before),fmt(f.after)]);}const csv='\ufeff'+lines.map(row=>row.map(v=>'"'+String(v).replace(/^[=+@-]/,"'$&").replace(/"/g,'""')+'"').join(';')).join('\r\n');const url=URL.createObjectURL(new Blob([csv],{type:'text/csv;charset=utf-8'}));const a=document.createElement('a');a.href=url;a.download='Montagem_alteracoes_26-08-2026.csv';a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);});
-  overview();render();
-})();
-
-
-// ══ VENDAS ══
+prodChartsInit['mai']=true;// ══ VENDAS ══
 document.getElementById('vendasKpis').innerHTML=`
   <div class="kpi green"><div class="kpi-val">25</div><div class="kpi-pct">+8 vs período ant.</div><div class="kpi-label">Negócios Ganhos</div></div>
   <div class="kpi blue"><div class="kpi-val">R$ 80,8k</div><div class="kpi-pct">+R$ 16,8k</div><div class="kpi-label">Valor Ganho</div></div>
